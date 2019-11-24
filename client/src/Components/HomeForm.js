@@ -5,7 +5,7 @@ import MediaQuery  from 'react-responsive';
 const Button = withRouter(({ history }) => (
   <button
     type='button'
-    onClick={() => { history.push('/WorkTermOne'); window.location.reload(); }}
+    onClick={() => { history.push('/Cooperators'); window.location.reload(); }}
     style={{padding: "12px", fontWeight: "bolder"}}
   >
     The Co-operators
