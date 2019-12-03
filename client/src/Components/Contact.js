@@ -99,11 +99,11 @@ class Contact extends React.Component {
         <div className="tabContent">
         <h3 className="title">Contact Me</h3><br></br>
                 <div>
-                    <input style={{width: "150px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
-                    <input style={{width: "150px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
-                    <input style={{width: "150px"}} onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
-                    <textarea onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
-                    <button onClick={this.submitForm} >Submit</button>
+                <label>Firstname:</label><input style={{width: "150px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
+                <label>Lastname:</label><input style={{width: "150px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
+                <label>Email:</label><input style={{width: "150px"}} onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
+                <label>Message:</label><br></br><textarea onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
+                <button onClick={this.submitForm} >Submit</button>
                 </div>
         </div>
         </MediaQuery>
@@ -112,10 +112,10 @@ class Contact extends React.Component {
         <div className="tabContent">
         <h3 className="title">Contact Me</h3><br></br>
                 <div>
-                    <input style={{minWidth: "300px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
-                    <input style={{minWidth: "300px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
-                    <input style={{minWidth: "300px"}}  onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
-                    <textarea style={{minWidth: "500px"}} onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
+                    <label>Firstname:</label><input style={{minWidth: "300px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
+                    <label>Lastname:</label><input style={{minWidth: "300px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
+                    <label>Email:</label><input style={{minWidth: "300px"}}  onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
+                    <label>Message:</label><br></br><textarea style={{minWidth: "500px"}} onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
                     <button onClick={this.submitForm} >Submit</button>
                 </div>
         </div>

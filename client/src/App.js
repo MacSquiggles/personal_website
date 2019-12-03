@@ -5,13 +5,14 @@ import AboutMeForm from "./Components/AboutMeForm";
 import HomeForm from "./Components/HomeForm";
 import ContactForm from "./Components/Contact";
 import WorkTermOneBlogForm from "./Components/WorkTermOneBlogForm";
-import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history';
 import MediaQuery  from 'react-responsive';
 import CheeseburgerMenu from 'cheeseburger-menu';
 import HamburgerMenu from 'react-hamburger-menu';
 import { SocialIcon } from 'react-social-icons';
-let history = null;
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+let history = createBrowserHistory();
 
 let myModalStyle = {
   overlay: {
@@ -78,8 +79,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    history = createBrowserHistory();
-
     this.state = {
       title: "",
       date: "",
@@ -92,7 +91,10 @@ class App extends React.Component {
       modalIsOpen: false,
       menuOpen: false,
       hoverCooperators: false,
-      selectReport: false
+      selectReport: false,
+      darkMode: false, 
+      start: true,
+      hoverArrow: false,
     };
 
     
@@ -112,13 +114,32 @@ class App extends React.Component {
     this.hoverContactMeOn = this.hoverContactMeOn.bind(this);
     this.hoverContactMeoff = this.hoverContactMeoff.bind(this);
     this.selectContactMe = this.selectContactMe.bind(this);
-    
-    this.updateHistory = this.updateHistory.bind(this);
+  
     this.closeModal = this.closeModal.bind(this);
 
+    this.hoverArrowOn = this.hoverArrowOn.bind(this);
+    this.hoverArrowOff = this.hoverArrowOff.bind(this);
     this.hoverCooperatorsOn = this.hoverCooperatorsOn.bind(this);
     this.hoverCooperatorsOff = this.hoverCooperatorsOff.bind(this);
     this.selectCooperators = this.selectCooperators.bind(this);
+    this.changeDark = this.changeDark.bind(this);
+    this.goToSite = this.goToSite.bind(this);
+  }
+  async hoverArrowOn(){
+    await this.setState({ hoverArrow: true });
+  }
+  async hoverArrowOff(){
+    await this.setState({ hoverArrow: false });
+  }
+
+  async goToSite(){
+    await this.setState({ hoverArrow: true });
+    await this.setState({ start: false });
+  }
+
+  async changeDark(){
+    let current = this.state.darkMode;
+    await this.setState({ darkMode: !current });
   }
 
   async selectCooperators() {
@@ -153,10 +174,6 @@ class App extends React.Component {
   // Closes the modal that alerts the client they are making an insurance-less client
   closeModal() {
     this.setState({modalIsOpen: false});
-  }
-
-  updateHistory() {
-    history = createBrowserHistory();
   }
 
   async selectHome() {
@@ -257,8 +274,32 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
+      return(
+        <div>
+          <ReactCSSTransitionGroup
+          transitionName="background"
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}
+        >
+          {this.state.start === true &&
+          <div className="startMenu" id="startMenu" style={{paddingTop: "50px"}}>
+            <div style={{margin: "20px", padding: "30px", borderTop: "2px solid white", borderBottom: "2px solid white"}}>
+            <div style={{float: "Center"}}>
+              <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/compLogo.png")} style={{width: "100px", height: "100px"}}/>
+          </div> <br></br>
+            <label style={{fontSize: "60px",  paddingBottom: "10px", border: "none", backgroundColor: "transparent", color: "white"}}>Mackenzie Quigley</label> <br></br>
+            <br></br>
+            <label style={{fontSize: "30px", paddingTop: "30px", border: "none", backgroundColor: "transparent", color: "white"}}>I am a student studying Software Engineering at the University of Guelph.<br></br> Click below to see my full website.</label> <br></br>
+            <input type="submit" onClick={this.goToSite} onMouseEnter={this.hoverArrowOn}  onMouseLeave={this.hoverArrowOff} style={this.state.hoverArrow ? {marginTop: "80px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "black"} : {marginTop: "80px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "white"} } value="↯" />
+            <br></br>
+            </div>
+          </div>
+           }
+          </ReactCSSTransitionGroup>
+
+      {this.state.start === false &&
+      <div style={{width: "100%", height: "100%"}} style={this.state.darkMode ? {backgroundColor: "black"} : {backgroundColor: "white"} }>
+        <Router>
         <MediaQuery query='(min-width: 1225px)'>
           <Modal
                 isOpen={this.state.modalIsOpen}
@@ -278,14 +319,14 @@ class App extends React.Component {
               </Modal >
         </MediaQuery>
 
-        <Router>
+        
           <div>
             <div style={{display: "block", overflow: "auto"}}>
               <MediaQuery query='(min-width: 1225px)'>
-                <div className="myheader" id="borderimg">
+                <div className={this.state.darkMode ? "myDarkHeader" : "myheader"}>
                 <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/logo.png")} style={{float: "left", padding: "10px", marginLeft: "40px", width: "250px", height: "150px", display: "block"}}/>
                
-                   <nav className="tabHeader">
+                <nav className="tabHeader">
                 
                   {history.location.pathname === "/" && 
                     <Link 
@@ -315,7 +356,7 @@ class App extends React.Component {
                       <label style={this.state.WorkTerm ? hoverTabStyle : tabStyle} >Work Term Reports</label>
                     }
 
-                  <div className="dropdown-content">
+                  <div className={this.state.darkMode ? "dropdown-contentDark" : "dropdown-content"}>
                       {history.location.pathname === "/Cooperators" &&
                       <div>
                         <Link style={hoverTabStyle} onMouseEnter={this.hoverCooperatorsOn}  onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators}  to="/Cooperators">The Co-operators</Link> <br></br>
@@ -410,22 +451,28 @@ class App extends React.Component {
         </MediaQuery>
         </div>
 
-        <div>
-              <Switch onChange={this.updateHistory}>
-                  <Route exact path="/" onChange={this.updateHistory}><HomeForm/></Route>
-                  <Route exact path="/Cooperators" onChange={this.updateHistory}> <WorkTermOneBlogForm/> </Route>
-                  <Route exact path="/ContactMe" onChange={this.updateHistory}> <ContactForm/> </Route>
-                  <Route exact path="/AboutMe" onChange={this.updateHistory}><AboutMeForm/></Route>
+        <MediaQuery query='(min-width: 1225px)'>
+          <div style={{margin: "100px"}}/>
+        </MediaQuery>
+              <Switch>
+                  <Route exact path="/"><HomeForm/></Route>
+                  <Route exact path="/Cooperators"> <WorkTermOneBlogForm/> </Route>
+                  <Route exact path="/ContactMe"> <ContactForm/> </Route>
+                  <Route exact path="/AboutMe"><AboutMeForm/></Route>
               </Switch>
-          </div>
         </div>
-      </Router>
+      
+
       <div style={{margin: "50px"}}>
         <SocialIcon style={{margin: "20px", width: "30px", height: "30px"}} url="https://www.linkedin.com/in/mackenzie-quigley-9680ba14a/" />
-        <br></br><label style={{backgroundColor: "transparent", fontSize: "20px"}}>Website Designed and Created By Mackenzie Quigley</label>
+        <br></br><label style={{backgroundColor: "transparent", fontSize: "20px"}}>Website Designed and Created By Mackenzie Quigley</label> <br></br>
+        <button onClick={this.changeDark} >Light/Dark</button>
         <br></br><button style={{float: "right"}} onClick={this.addPosts} className="AddPost" id="AddPost">+</button> <br></br>
         </div>
+        </Router>
       </div>
+    }
+    </div>
     );
   }
 }

@@ -6,7 +6,6 @@ const Button = withRouter(({ history }) => (
   <button
     type='button'
     onClick={() => { history.push('/Cooperators'); window.location.reload(); }}
-    style={{padding: "12px", fontWeight: "bolder"}}
   >
     The Co-operators
   </button>
