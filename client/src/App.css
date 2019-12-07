@@ -1,5 +1,13 @@
 .App {
-  text-align: center;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  top: 0px;
+  left: 0px;
+  min-height: 100vh;
+  position: absolute;
 }
 
 /* Style the image inside the centered container, if needed */
@@ -14,11 +22,11 @@ html {
 }
 
 
-#darkText {
+.darkText {
   color: white;
 }
 
-#whiteText {
+.lightText {
   color: black;
 }
 
@@ -69,6 +77,7 @@ p {
   overflow: auto;
   background-color: #5299ba;
   padding: 10px;
+  padding-bottom: 30px;
   margin-bottom: 100px;
   float: right;
   width: 100%;
@@ -83,23 +92,22 @@ p {
   overflow: auto;
   background-color: black;
   padding: 10px;
+  padding-bottom: 30px;
   margin-bottom: 100px;
   float: right;
   width: 100%;
   position: fixed;
   top: 0px;
   border-bottom: 2px solid #5299ba;
-  z-index: 80;
 }
 
 .tabHeader {
   text-align: center;
   margin: auto;
-  padding: 15px;
+  padding: 10px;
   float: right;
   margin-right: 100px;
   display: block;
-  z-index: 80;
 }
 
 .postTitle {
@@ -147,7 +155,6 @@ textarea {
 
 .dropdown-content {
   display: none;
-  position: absolute;
   background-color: #5299ba;
   border: 1px solid black;
   border-top: none;
@@ -159,14 +166,13 @@ textarea {
 
 .dropdown-contentDark {
   display: none;
-  position: absolute;
   background-color: black;
   border: 1px solid #5299ba;
   border-top: none;
   padding-bottom: 10px;
-  position: fixed;
+  position: absolute;
   z-index: 99;
-  margin-left:25px;
+  margin-left: 25px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -270,13 +276,26 @@ input {
 .tabContent {
   text-align: center;
   width: 70%;
-  padding: 20px;
   padding: 100px;
   margin-bottom: 50px;
   display: block;
   background-size: cover;
   margin: auto;
   border: none;
+  color: black;
+}
+
+
+.tabContentDark {
+  text-align: center;
+  width: 70%;
+  padding: 100px;
+  margin-bottom: 50px;
+  display: block;
+  background-size: cover;
+  margin: auto;
+  border: none;
+  color: white;
 }
 
 

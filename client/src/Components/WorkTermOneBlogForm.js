@@ -7,12 +7,17 @@ class WorkTermOneBlogForm extends React.Component {
 
     this.state = {
       posts: [],
-      sortBy: "ASC"
+      sortBy: "ASC",
+      darkMode: props.darkMode,
     };
 
     this.seePosts = this.seePosts.bind(this);
     this.changeSort = this.changeSort.bind(this);
   }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({darkMode: newProps.darkMode});
+}
 
   async componentDidMount() {
     let response = await getPostData(this.state.sortBy);
@@ -34,7 +39,7 @@ class WorkTermOneBlogForm extends React.Component {
 
   render() {
     return (
-      <div className="tabContent">
+      <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
         <MediaQuery query='(max-width: 1224px)'>
           <h3 className="mobileTitle">
             Jr. Systems Developer

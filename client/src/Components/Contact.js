@@ -25,7 +25,8 @@ class Contact extends React.Component {
       lastname: "",
       email: "",
       message: "",
-      modalIsOpen: false
+      modalIsOpen: false,
+      darkMode: props.darkMode,
     };
 
     this.changeFirstname = this.changeFirstname.bind(this);
@@ -35,6 +36,10 @@ class Contact extends React.Component {
     this.submitForm = this.submitForm.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({darkMode: newProps.darkMode});
+}
  
   closeModal() {
     this.setState({modalIsOpen: false});
@@ -90,32 +95,32 @@ class Contact extends React.Component {
  
           <h1 style={{fontSize: "40px"}}>{modalTitle}</h1>
           <div>
-            <p>{modalText}</p>
+            <p className={this.state.darkMode ? "darkText" : "lightText"} >{modalText}</p>
           <button onClick={this.closeModal}>Okay</button>
           </div>
         </Modal>
 
         <MediaQuery query='(max-width: 1224px)'>
-        <div className="tabContent">
+        <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
         <h3 className="title">Contact Me</h3><br></br>
                 <div>
-                <label>Firstname:</label><input style={{width: "150px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
-                <label>Lastname:</label><input style={{width: "150px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
-                <label>Email:</label><input style={{width: "150px"}} onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
-                <label>Message:</label><br></br><textarea onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
+                <label className={this.state.darkMode ? "darkText" : "lightText"}>Firstname:</label><input style={{width: "150px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
+                <label className={this.state.darkMode ? "darkText" : "lightText"}>Lastname:</label><input style={{width: "150px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
+                <label className={this.state.darkMode ? "darkText" : "lightText"}>Email:</label><input style={{width: "150px"}} onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
+                <label className={this.state.darkMode ? "darkText" : "lightText"}>Message:</label><br></br><textarea onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
                 <button onClick={this.submitForm} >Submit</button>
                 </div>
         </div>
         </MediaQuery>
 
         <MediaQuery query='(min-width: 1225px)'>
-        <div className="tabContent">
+        <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
         <h3 className="title">Contact Me</h3><br></br>
                 <div>
-                    <label>Firstname:</label><input style={{minWidth: "300px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
-                    <label>Lastname:</label><input style={{minWidth: "300px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
-                    <label>Email:</label><input style={{minWidth: "300px"}}  onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
-                    <label>Message:</label><br></br><textarea style={{minWidth: "500px"}} onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
+                    <label className={this.state.darkMode ? "darkText" : "lightText"}>Firstname:</label><input style={{minWidth: "300px"}} onChange={this.changeFirstname} type="text"id="fname"name="firstname"placeholder="Firstname" value={this.state.firstname}/><br></br><br></br>
+                    <label className={this.state.darkMode ? "darkText" : "lightText"}>Lastname:</label><input style={{minWidth: "300px"}} onChange={this.changeLastname} type="text"id="lname" name="lastname" placeholder="Lastname" value={this.state.lastname} /><br></br><br></br>
+                    <label className={this.state.darkMode ? "darkText" : "lightText"}>Email:</label><input style={{minWidth: "300px"}}  onChange={this.changeEmail} type="text" id="email"name="email"placeholder="Email" value={this.state.email}/><br></br><br></br>
+                    <label className={this.state.darkMode ? "darkText" : "lightText"}>Message:</label><br></br><textarea style={{minWidth: "500px"}} onChange={this.changeMessage} id="subject"name="subject"placeholder="Write something..." value={this.state.message}></textarea><br></br><br></br>
                     <button onClick={this.submitForm} >Submit</button>
                 </div>
         </div>

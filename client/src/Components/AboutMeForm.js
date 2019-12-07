@@ -4,9 +4,21 @@ import MediaQuery  from 'react-responsive';
 let myDescription = require("./MyText/AboutMe_MyDescription");
 
 class AboutMeForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      darkMode: props.darkMode,
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({darkMode: newProps.darkMode});
+}
+
   render() {
     return (
-        <div className="tabContent">
+        <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
           <h3 className="title" >About Me</h3>
 
           <MediaQuery query='(min-width: 1451px)'>           
@@ -15,13 +27,13 @@ class AboutMeForm extends React.Component {
                   <img  alt="Mackenzie Quigley" src={require("./MyText/mePicture.jpg")} style={{width: "280px", height: "400px"}}/>
                   </Grid>
                   <Grid size={6}>
-                    <p>{myDescription.Text}</p>
+                    <p className={this.state.darkMode ? "darkText" : "lightText"}>{myDescription.Text}</p>
                   </Grid>
               </Grid>
             </MediaQuery>
 
             <MediaQuery query='(max-width: 1450px)'>
-                  <p>{myDescription.Text}</p>
+                  <p className={this.state.darkMode ? "darkText" : "lightText"}>{myDescription.Text}</p>
                   <img  alt="Mackenzie Quigley" src={require("./MyText/mePicture.jpg")} style={{width: "180px", height: "250px"}}/>
             </MediaQuery>
         </div>

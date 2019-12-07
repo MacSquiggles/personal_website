@@ -12,13 +12,25 @@ const Button = withRouter(({ history }) => (
 ));
 
 class HomeForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      darkMode: props.darkMode,
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({darkMode: newProps.darkMode});
+}
+
   render() {
     return (
       <div>
         <MediaQuery query='(max-width: 1224px)'>
-        <div className="tabContent">
+        <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
             <h3 className="title" >Welcome To My Website</h3>
-            <p style={{paddingLeft: "30px", paddingRight: "30px"}}>
+            <p style={{paddingLeft: "30px", paddingRight: "30px"}} className={this.state.darkMode ? "darkText" : "lightText"}>
             This website was created to detail the experiences I had during my CO-OP work terms, starting 
             at the Co-operators (Guelph location). I spent my term working with the Build Automation and 
             Release (BAR) team where we were responsible for the automation of testing, release activities,
@@ -32,9 +44,9 @@ class HomeForm extends React.Component {
         </MediaQuery>
 
         <MediaQuery query='(min-width: 1225px)'>
-        <div className="tabContent">
+        <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
             <h3 className="title" >Welcome To My Website</h3>
-            <p style={{paddingLeft: "30px", paddingRight: "30px"}}>
+            <p style={{paddingLeft: "30px", paddingRight: "30px"}} className={this.state.darkMode ? "darkText" : "lightText"}>
             This website was created to detail the experiences I had during my CO-OP work terms, starting 
             at the Co-operators (Guelph location). I spent my term working with the Build Automation and 
             Release (BAR) team where we were responsible for the automation of testing, release activities,
