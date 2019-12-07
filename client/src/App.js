@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import AboutMeForm from "./Components/AboutMeForm";
 import HomeForm from "./Components/HomeForm";
 import ContactForm from "./Components/Contact";
+import WorkTermReportsForm from "./Components/WorkTermReportsForm";
 import WorkTermOneBlogForm from "./Components/WorkTermOneBlogForm";
 import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history';
@@ -55,7 +56,7 @@ const mobileOptions = {
 
 const tabStyle = {
   backgroundColor: "transparent",
-  color: 'grey', 
+  color: 'white', 
   textAlign: 'center',
   fontSize: '30px',
   marginLeft: "30px",
@@ -65,15 +66,37 @@ const tabStyle = {
 };
 
 const hoverTabStyle = {
-  color: '#FFC30B',
+  color: 'black',
   textAlign: 'center',
   fontSize: '30px',
   marginLeft: "30px",
   marginRight: "30px",
   textDecoration: 'none',
-  borderBottom: "3px solid #FFC30B"
+  borderBottom: "3px solid black"
 };
 
+
+
+const tabStyleDark = {
+  backgroundColor: "transparent",
+  color: '#5299ba', 
+  textAlign: 'center',
+  fontSize: '30px',
+  marginLeft: "30px",
+  marginRight: "30px",
+  textDecoration: 'none',
+  borderBottom: "3px solid transparent"
+};
+
+const hoverTabStyleDark = {
+  color: 'white',
+  textAlign: 'center',
+  fontSize: '30px',
+  marginLeft: "30px",
+  marginRight: "30px",
+  textDecoration: 'none',
+  borderBottom: "3px solid white"
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -115,6 +138,8 @@ class App extends React.Component {
     this.hoverContactMeoff = this.hoverContactMeoff.bind(this);
     this.selectContactMe = this.selectContactMe.bind(this);
   
+    this.selectReport = this.selectReport.bind(this);
+
     this.closeModal = this.closeModal.bind(this);
 
     this.hoverArrowOn = this.hoverArrowOn.bind(this);
@@ -140,6 +165,15 @@ class App extends React.Component {
   async changeDark(){
     let current = this.state.darkMode;
     await this.setState({ darkMode: !current });
+  }
+
+  async selectReport() {
+    this.setState({ hoverCooperators: false });
+    this.setState({ selectReport: true });
+    this.setState({ hoverAboutMe: false });
+    this.setState({ hoverHome: false });
+    this.setState({ hoverContactMe: false }); 
+    await history.push("/WorkTermReports");
   }
 
   async selectCooperators() {
@@ -210,8 +244,8 @@ class App extends React.Component {
   }
 
   hoverAboutMeoff(){ 
-    if(history.location.pathname !== "/ContactMe") {
-      this.setState({ hoverContactMe: false });    
+    if(history.location.pathname !== "/AboutMe") {
+      this.setState({ hoverAboutMe: false });    
     }
   }
 
@@ -285,8 +319,8 @@ class App extends React.Component {
           <div className="startMenu" id="startMenu" style={{paddingTop: "50px"}}>
             <div style={{margin: "20px", padding: "30px", borderTop: "2px solid white", borderBottom: "2px solid white"}}>
             <div style={{float: "Center"}}>
-              <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/compLogo.png")} style={{width: "100px", height: "100px"}}/>
-          </div> <br></br>
+            <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/compLogo.png")} style={{width: "100px", height: "100px"}}/>
+         </div> <br></br>
             <label style={{fontSize: "60px",  paddingBottom: "10px", border: "none", backgroundColor: "transparent", color: "white"}}>Mackenzie Quigley</label> <br></br>
             <br></br>
             <label style={{fontSize: "30px", paddingTop: "30px", border: "none", backgroundColor: "transparent", color: "white"}}>I am a student studying Software Engineering at the University of Guelph.<br></br> Click below to see my full website.</label> <br></br>
@@ -324,15 +358,16 @@ class App extends React.Component {
             <div style={{display: "block", overflow: "auto"}}>
               <MediaQuery query='(min-width: 1225px)'>
                 <div className={this.state.darkMode ? "myDarkHeader" : "myheader"}>
-                <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/logo.png")} style={{float: "left", padding: "10px", marginLeft: "40px", width: "250px", height: "150px", display: "block"}}/>
-               
+                <p style={this.state.darkMode ? {fontSize: "60px", margin: "auto", color: "#5299ba", float: "left", position: "fixed", fontWeight: "bold", marginLeft: "20px"} : {fontSize: "40px", color: "black", float: "left", position: "fixed", fontWeight: "bold", margin: "auto", marginLeft: "20px"}}>
+                  MQ <i class="fas fa-laptop-code"></i></p>
+              {!this.state.darkMode &&
                 <nav className="tabHeader">
                 
                   {history.location.pathname === "/" && 
                     <Link 
                     style={hoverTabStyle} 
                     to="/">
-                    Home
+                    <i class="fas fa-home"></i> Home
                     </Link>
                   }
 
@@ -343,18 +378,29 @@ class App extends React.Component {
                     onMouseLeave={this.hoverHomeOff}  
                     onClick={this.selectHome} 
                     to="/">
-                    Home
+                    <i class="fas fa-home"></i> Home
                     </Link>
                   }
                   
 
                   <div className="dropdown">
-                    {(this.state.selectReport === true) &&
-                      <label style={hoverTabStyle} >Work Term Reports</label>
-                    }
-                    {(this.state.selectReport !== true) &&
-                      <label style={this.state.WorkTerm ? hoverTabStyle : tabStyle} >Work Term Reports</label>
-                    }
+                  {(history.location.pathname !== "/WorkTermReports" &&  history.location.pathname !== "/Cooperators") &&
+                    <Link 
+                    style={this.state.hoverReports ? hoverTabStyle : tabStyle}   
+                    onClick={this.selectReport} 
+                    to="/WorkTermReports">
+                    <i class="fas fa-briefcase"></i> Work Term Reports
+                    </Link>
+                  }
+
+                  {(history.location.pathname === "/WorkTermReports" ||  history.location.pathname === "/Cooperators") &&
+                    <Link 
+                    style={hoverTabStyle} 
+                    onClick={this.selectReport} 
+                    to="/WorkTermReports">
+                    <i class="fas fa-briefcase"></i> Work Term Reports
+                    </Link>
+                  }
 
                   <div className={this.state.darkMode ? "dropdown-contentDark" : "dropdown-content"}>
                       {history.location.pathname === "/Cooperators" &&
@@ -374,7 +420,7 @@ class App extends React.Component {
                 <Link
                 style={ hoverTabStyle} 
                 to="/AboutMe">
-                  About Me
+                  <i class="fas fa-id-card"></i> About Me
                   </Link>
               }
 
@@ -385,7 +431,7 @@ class App extends React.Component {
                 onMouseEnter={this.hoverAboutMeOn} 
                 onMouseLeave={this.hoverAboutMeoff} 
                 to="/AboutMe">
-                  About Me
+                  <i class="fas fa-id-card"></i> About Me
                   </Link>
               } 
 
@@ -394,7 +440,7 @@ class App extends React.Component {
                 <Link
                 style={ hoverTabStyle} 
                 to="/ContactMe">
-                  Contact Me
+                  <i class="fas fa-envelope"></i> Contact Me
                   </Link>
               }
 
@@ -405,30 +451,132 @@ class App extends React.Component {
                 onMouseEnter={this.hoverContactMeOn} 
                 onMouseLeave={this.hoverContactMeoff} 
                 to="/ContactMe">
-                  Contact Me
+                  <i class="fas fa-envelope"></i> Contact Me
                   </Link>
               }
               </nav>
+      }
+
+
+              {this.state.darkMode &&
+              
+              <nav className="tabHeader">
+                
+                  {history.location.pathname === "/" && 
+                    <Link 
+                    style={hoverTabStyleDark} 
+                    to="/">
+                     <i class="fas fa-home"></i> Home
+                    </Link>
+                  }
+
+                  {history.location.pathname !== "/" &&
+                    <Link 
+                    style={this.state.hoverHome ? hoverTabStyleDark : tabStyleDark} 
+                    onMouseEnter={this.hoverHomeOn} 
+                    onMouseLeave={this.hoverHomeOff}  
+                    onClick={this.selectHome} 
+                    to="/">
+                    <i class="fas fa-home"></i> Home
+                    </Link>
+                  }
+                  
+
+                  <div className="dropdown">
+                  {(history.location.pathname !== "/WorkTermReports" &&  history.location.pathname !== "/Cooperators") &&
+                    <Link 
+                    style={this.state.hoverReports ? hoverTabStyleDark : tabStyleDark}   
+                    onClick={this.selectReport} 
+                    to="/WorkTermReports">
+                    <i class="fas fa-briefcase"></i> Work Term Reports
+                    </Link>
+                  }
+
+                  {(history.location.pathname === "/WorkTermReports" ||  history.location.pathname === "/Cooperators") &&
+                    <Link 
+                    style={hoverTabStyleDark} 
+                    onClick={this.selectReport} 
+                    to="/WorkTermReports">
+                    <i class="fas fa-briefcase"></i> Work Term Reports
+                    </Link>
+                  }
+
+                  <div className={this.state.darkMode ? "dropdown-contentDark" : "dropdown-content"}>
+                      {history.location.pathname === "/Cooperators" &&
+                      <div>
+                        <Link style={hoverTabStyleDark} onMouseEnter={this.hoverCooperatorsOn}  onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators}  to="/Cooperators">The Co-operators</Link> <br></br>
+                      </div>
+                      }
+                      {history.location.pathname !== "/Cooperators" &&
+                      <div>
+                        <Link style={this.state.hoverCooperators ? hoverTabStyleDark : tabStyleDark} onMouseEnter={this.hoverCooperatorsOn}  onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                      </div>
+                      }
+                      </div>
+                  </div>
+                  
+                {history.location.pathname === "/AboutMe" && 
+                <Link
+                style={ hoverTabStyleDark} 
+                to="/AboutMe">
+                  <i class="fas fa-id-card"></i> About Me
+                  </Link>
+              }
+
+                {history.location.pathname !== "/AboutMe" && 
+                <Link
+                onClick={this.selectAboutMe} 
+                style={this.state.hoverAboutMe ? hoverTabStyleDark : tabStyleDark} 
+                onMouseEnter={this.hoverAboutMeOn} 
+                onMouseLeave={this.hoverAboutMeoff} 
+                to="/AboutMe">
+                  <i class="fas fa-id-card"></i> About Me
+                  </Link>
+              } 
+
+
+              {history.location.pathname === "/ContactMe" && 
+                <Link
+                style={ hoverTabStyleDark} 
+                to="/ContactMe">
+                  <i class="fas fa-envelope"></i> Contact Me
+                  </Link>
+              }
+
+                {history.location.pathname !== "/ContactMe" && 
+                <Link
+                onClick={this.selectContactMe} 
+                style={this.state.hoverContactMe ? hoverTabStyleDark : tabStyleDark} 
+                onMouseEnter={this.hoverContactMeOn} 
+                onMouseLeave={this.hoverContactMeoff} 
+                to="/ContactMe">
+                  <i class="fas fa-envelope"></i> Contact Me
+                  </Link>
+              }
+              </nav>
+              }
               </div>
           </MediaQuery>
 
           <MediaQuery query='(max-width: 1224px)'>
-          <div  >
+          <div className="tabheader">
+          <div className={this.state.darkMode ? "myDarkHeader" : "myheader"}>
             <div style={{padding: "10px", float: "left"}}>
                 <CheeseburgerMenu
                   isOpen={this.state.menuOpen}
                   closeCallback={this.closeMenu.bind(this)}>
+
                         <Link onClick={this.closeMenu.bind(this)} style={{textDecoration: "none"}} to="/">
-                          <p style={{mobileOptions}}>Home</p>
+                          <p style={{mobileOptions}}><i class="fas fa-home"></i> Home</p>
                         </Link>
                         <Link onClick={this.closeMenu.bind(this)} style={{textDecoration: "none"}} to="/Cooperators">
-                          <p style={{mobileOptions}}>The Co-operators</p>
+                         <p style={{mobileOptions}}><i class="fas fa-briefcase"></i> The Co-operators</p>
                         </Link>
                         <Link  onClick={this.closeMenu.bind(this)}style={{textDecoration: "none"}} to="/AboutMe">
-                          <p style={{mobileOptions}}>About Me</p>
+                          <p style={{mobileOptions}}><i class="fas fa-id-card"></i> About Me</p>
                         </Link>
                         <Link  onClick={this.closeMenu.bind(this)}style={{textDecoration: "none"}} to="/ContactMe">
-                          <p style={{mobileOptions}}>Contact Me</p>
+                          <p style={{mobileOptions}}><i class="fas fa-envelope"></i> Contact Me</p>
                         </Link>
                 </CheeseburgerMenu>
           
@@ -439,23 +587,25 @@ class App extends React.Component {
                   height={24}
                   strokeWidth={3}
                   rotate={0}
-                  color='black'
+                  color={this.state.darkMode ? "#5299ba" : "black"}
                   borderRadius={0}
                   animationDuration={0.5}
                 />
             </div>
-            <div style={{float: "Center"}}>
-              <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/logo.png")} style={{width: "200px", height: "100px"}}/>
-          </div>
+            <p style={this.state.darkMode ? {fontSize: "40px",  color: "#5299ba", float: "center", fontWeight: "bold"} : {fontSize: "40px", color: "black", float: "center", fontWeight: "bold"}}>
+                  MQ <i class="fas fa-laptop-code"></i></p>
+           </div>
            </div>
         </MediaQuery>
         </div>
 
         <MediaQuery query='(min-width: 1225px)'>
-          <div style={{margin: "100px"}}/>
+          <div style={{marginTop: "100px"}}/>
         </MediaQuery>
+
               <Switch>
                   <Route exact path="/"><HomeForm/></Route>
+                  <Route exact path="/WorkTermReports"> <WorkTermReportsForm/> </Route>
                   <Route exact path="/Cooperators"> <WorkTermOneBlogForm/> </Route>
                   <Route exact path="/ContactMe"> <ContactForm/> </Route>
                   <Route exact path="/AboutMe"><AboutMeForm/></Route>

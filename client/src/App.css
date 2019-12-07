@@ -67,14 +67,15 @@ p {
 .myheader {
   display: block;
   overflow: auto;
-  background-color: white;
+  background-color: #5299ba;
   padding: 10px;
   margin-bottom: 100px;
   float: right;
   width: 100%;
   position: fixed;
   top: 0px;
-  border-bottom: 2px solid #5299ba;
+  left: 0px;
+  border-bottom: 2px solid black;
 }
 
 .myDarkHeader {
@@ -93,10 +94,8 @@ p {
 
 .tabHeader {
   text-align: center;
-  margin-top: 25px;
-  padding: 20px;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin: auto;
+  padding: 15px;
   float: right;
   margin-right: 100px;
   display: block;
@@ -149,19 +148,25 @@ textarea {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: white;
-  box-shadow: 5px 10px 18px #888888;
-  z-index: 85;
+  background-color: #5299ba;
+  border: 1px solid black;
+  border-top: none;
   padding-bottom: 10px;
+  position: fixed;
+  z-index: 99;
+  margin-left: 25px;
 }
 
 .dropdown-contentDark {
   display: none;
   position: absolute;
   background-color: black;
-  box-shadow: 2px 5px 9px grey;
-  z-index: 85;
+  border: 1px solid #5299ba;
+  border-top: none;
   padding-bottom: 10px;
+  position: fixed;
+  z-index: 99;
+  margin-left:25px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -271,18 +276,20 @@ input {
   display: block;
   background-size: cover;
   margin: auto;
-  border: 1px solid #5299ba;
+  border: none;
 }
 
 
 #startMenu {
   margin: auto;
-  height: 95%;
-  width: 99%;
+  height: 90%;
+  width: 100%;
   background: linear-gradient(to bottom, #5299ba 0%, #FFC30B 100%);
   background-repeat:no-repeat;
   display: block;
   overflow: auto;
+  top: 0px;
+  left: 0px;
   min-height: 95vh;
   position: absolute;
   z-index: 99;
