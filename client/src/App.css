@@ -72,9 +72,12 @@ p {
   text-align: center;
 }
 
+.dropdownItems:hover {
+    background-color: transparent;
+}
+
 .myheader {
   display: block;
-  overflow: auto;
   background-color: #5299ba;
   padding: 10px;
   padding-bottom: 30px;
@@ -89,7 +92,6 @@ p {
 
 .myDarkHeader {
   display: block;
-  overflow: auto;
   background-color: black;
   padding: 10px;
   padding-bottom: 30px;
@@ -135,10 +137,6 @@ button {
 }
 
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
 
 textarea {
   width: 70%;
@@ -153,35 +151,30 @@ textarea {
   font-family:'Yu Gothic', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
 }
 
-.dropdown-content {
-  display: none;
-  background-color: #5299ba;
-  border: 1px solid black;
-  border-top: none;
-  padding-bottom: 10px;
-  position: fixed;
-  z-index: 99;
-  margin-left: 25px;
+
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-.dropdown-contentDark {
+.dropdown-content {
   display: none;
-  background-color: black;
-  border: 1px solid #5299ba;
-  border-top: none;
-  padding-bottom: 10px;
   position: absolute;
-  z-index: 99;
-  margin-left: 25px;
+  background-color: white;
+  width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 2px 2px;
+  z-index: 1;
+}
+
+.dropdown:hover {
+  color:#006699;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.dropdown:hover .dropdown-contentDark {
-  display: block;
-}
 
 select {
   font-size: 24px;
@@ -311,7 +304,7 @@ input {
   left: 0px;
   min-height: 95vh;
   position: absolute;
-  z-index: 99;
+  z-index: 1;
 }
 
 #borderimg { 

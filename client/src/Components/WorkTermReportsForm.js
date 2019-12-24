@@ -31,7 +31,7 @@ class WorkTermReportsForm extends React.Component {
         <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
             <h3 className="title" >Work Term Reports</h3>
             <p style={{paddingLeft: "30px", paddingRight: "30px"}} className={this.state.darkMode ? "darkText" : "lightText"}>
-            To learn more about my first and second work term at The 
+            To learn more about my S19 and F19 work term at The 
              Co-operators, click the button below.</p> <br></br>
              <Button />
              <br></br>
@@ -52,6 +52,5 @@ class WorkTermReportsForm extends React.Component {
     );
   }
 }
-
 
 export default WorkTermReportsForm;

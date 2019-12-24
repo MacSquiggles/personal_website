@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Modal from 'react-modal';
 import AboutMeForm from "./Components/AboutMeForm";
 import HomeForm from "./Components/HomeForm";
@@ -14,6 +13,23 @@ import HamburgerMenu from 'react-hamburger-menu';
 import { SocialIcon } from 'react-social-icons';
 import { Transform } from 'react-animation-components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavLink,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
+
 let history = createBrowserHistory();
 
 let myModalStyle = {
@@ -54,6 +70,45 @@ const mobileOptions = {
   border: "1px solid grey",
 }
 
+const dropDownTabStyleDark = {
+  backgroundColor: "transparent",
+  color: '#5299ba',
+  textAlign: 'center',
+  fontSize: '24px',
+  marginLeft: "30px",
+  marginRight: "30px",
+  textDecoration: 'none',
+};
+
+const dropDownHoverTabStyleDark = {
+  color: 'white',
+  textAlign: 'center',
+  fontSize: '24px',
+  marginLeft: "30px",
+  marginRight: "30px",
+  textDecoration: 'none',
+  borderBottom: "3px solid white"
+};
+
+const dropDownItemStyle = {
+  backgroundColor: "transparent",
+  color: '#5299ba',
+  textAlign: 'center',
+  fontSize: '24px',
+  marginLeft: "10px",
+  marginRight: "10px",
+  textDecoration: 'none'
+};
+
+const dropDownItemHoverTabStyle = {
+  color: 'black',
+  textAlign: 'center',
+  fontSize: '24px',
+  marginLeft: "10px",
+  marginRight: "10px",
+  textDecoration: 'none',
+  borderBottom: "3px solid black"
+};
 
 const tabStyle = {
   backgroundColor: "transparent",
@@ -75,8 +130,6 @@ const hoverTabStyle = {
   textDecoration: 'none',
   borderBottom: "3px solid black"
 };
-
-
 
 const tabStyleDark = {
   backgroundColor: "transparent",
@@ -119,8 +172,10 @@ class App extends React.Component {
       darkMode: false,
       start: true,
       hoverArrow: false,
+      history: history,
+      isOpen: false
     };
-
+    this.toggle = this.toggle.bind(this);
 
     this.changeDropDown = this.changeDropDown.bind(this);
     this.addPosts = this.addPosts.bind(this);
@@ -308,9 +363,16 @@ class App extends React.Component {
     this.setState({ modalIsOpen: true });
   }
 
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
   render() {
+
     return (
-      <div>
+      <div style={{ textAlign: "center" }}>
         <ReactCSSTransitionGroup
           transitionName="background"
           transitionEnterTimeout={1000}
@@ -358,10 +420,10 @@ class App extends React.Component {
 
 
               <div>
-                <div style={{ display: "block", overflow: "auto" }}>
+                <div style={{ display: "block"}}>
                   <MediaQuery query='(min-width: 1225px)'>
                     <div className={this.state.darkMode ? "myDarkHeader" : "myheader"}>
-                      
+
                       <Transform enterTransform="translateY(20px)" in>
                         <p style={this.state.darkMode ? { fontSize: "40px", margin: "auto", color: "#5299ba", float: "left", position: "fixed", fontWeight: "bold", marginLeft: "20px" } : { fontSize: "40px", color: "black", float: "left", position: "fixed", fontWeight: "bold", margin: "auto", marginLeft: "20px" }}>
                           MQ <i class="fas fa-laptop-code"></i></p>
@@ -369,7 +431,8 @@ class App extends React.Component {
 
                       {!this.state.darkMode &&
 
-                        <nav className="tabHeader">
+                        <Nav className="tabHeader">
+
 
                           <Transform enterTransform="translateY(20px)" in>
                             {history.location.pathname === "/" &&
@@ -377,9 +440,8 @@ class App extends React.Component {
                                 style={hoverTabStyle}
                                 to="/">
                                 <i class="fas fa-home"></i> Home
-                           </Link>
+                            </Link>
                             }
-
                             {history.location.pathname !== "/" &&
                               <Link
                                 style={this.state.hoverHome ? hoverTabStyle : tabStyle}
@@ -388,42 +450,46 @@ class App extends React.Component {
                                 onClick={this.selectHome}
                                 to="/">
                                 <i class="fas fa-home"></i> Home
-                    </Link>
+                              </Link>
                             }
 
-
-                            <div className="dropdown">
-                              {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators") &&
-                                <Link
-                                  style={this.state.hoverReports ? hoverTabStyle : tabStyle}
-                                  onClick={this.selectReport}
-                                  to="/WorkTermReports">
-                                  <i class="fas fa-briefcase"></i> Work Term Reports
-                    </Link>
-                              }
-
-                              {(history.location.pathname === "/WorkTermReports" || history.location.pathname === "/Cooperators") &&
-                                <Link
-                                  style={hoverTabStyle}
-                                  onClick={this.selectReport}
-                                  to="/WorkTermReports">
-                                  <i class="fas fa-briefcase"></i> Work Term Reports
-                    </Link>
-                              }
-
-                              <div className={this.state.darkMode ? "dropdown-contentDark" : "dropdown-content"}>
-                                {history.location.pathname === "/Cooperators" &&
-                                  <div>
-                                    <Link style={hoverTabStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
-                                  </div>
+                            <UncontrolledDropdown nav inNavbar>
+                              <DropdownToggle nav caret color="white">
+                                {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators") &&
+                                  <Link
+                                    style={this.state.hoverReports ? hoverTabStyle : tabStyle}
+                                    onClick={this.selectReport}
+                                    to="/WorkTermReports">
+                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                    </Link>
                                 }
-                                {history.location.pathname !== "/Cooperators" &&
-                                  <div>
-                                    <Link style={this.state.hoverCooperators ? hoverTabStyle : tabStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
-                                  </div>
+
+                                {(history.location.pathname === "/WorkTermReports" || history.location.pathname === "/Cooperators") &&
+                                  <Link
+                                    style={hoverTabStyle}
+                                    onClick={this.selectReport}
+                                    to="/WorkTermReports">
+                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                </Link>
                                 }
-                              </div>
-                            </div>
+                              </DropdownToggle>
+                              <DropdownMenu center style={{ width: "350px", marginLeft: "10px", textAlign: 'center' }}>
+                                <DropdownItem className="dropdownItems">
+                                  {history.location.pathname === "/Cooperators" &&
+                                    <div>
+                                      <Link style={dropDownItemHoverTabStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                    </div>
+                                  }
+                                  {history.location.pathname !== "/Cooperators" &&
+                                    <div>
+                                      <Link style={this.state.hoverCooperators ? dropDownItemHoverTabStyle : dropDownItemStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                    </div>
+                                  }
+                                </DropdownItem>
+                                {/*<DropdownItem divider />*/}
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+
 
                             {history.location.pathname === "/AboutMe" &&
                               <Link
@@ -464,14 +530,14 @@ class App extends React.Component {
                   </Link>
                             }
                           </Transform>
-                        </nav>
+                        </Nav>
 
                       }
 
 
                       {this.state.darkMode &&
 
-                        <nav className="tabHeader">
+                        <Nav className="tabHeader">
 
                           <Transform enterTransform="translateY(20px)" in>
                             {history.location.pathname === "/" &&
@@ -493,39 +559,42 @@ class App extends React.Component {
                     </Link>
                             }
 
-
-                            <div className="dropdown">
-                              {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators") &&
-                                <Link
-                                  style={this.state.hoverReports ? hoverTabStyleDark : tabStyleDark}
-                                  onClick={this.selectReport}
-                                  to="/WorkTermReports">
-                                  <i class="fas fa-briefcase"></i> Work Term Reports
-                    </Link>
-                              }
-
-                              {(history.location.pathname === "/WorkTermReports" || history.location.pathname === "/Cooperators") &&
-                                <Link
-                                  style={hoverTabStyleDark}
-                                  onClick={this.selectReport}
-                                  to="/WorkTermReports">
-                                  <i class="fas fa-briefcase"></i> Work Term Reports
-                    </Link>
-                              }
-
-                              <div className={this.state.darkMode ? "dropdown-contentDark" : "dropdown-content"}>
-                                {history.location.pathname === "/Cooperators" &&
-                                  <div>
-                                    <Link style={hoverTabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
-                                  </div>
+                            <UncontrolledDropdown nav inNavbar>
+                              <DropdownToggle nav caret color="white">
+                                {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators") &&
+                                  <Link
+                                    style={this.state.hoverReports ? hoverTabStyle : tabStyle}
+                                    onClick={this.selectReport}
+                                    to="/WorkTermReports">
+                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                    </Link>
                                 }
-                                {history.location.pathname !== "/Cooperators" &&
-                                  <div>
-                                    <Link style={this.state.hoverCooperators ? hoverTabStyleDark : tabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
-                                  </div>
+
+                                {(history.location.pathname === "/WorkTermReports" || history.location.pathname === "/Cooperators") &&
+                                  <Link
+                                    style={hoverTabStyleDark}
+                                    onClick={this.selectReport}
+                                    to="/WorkTermReports">
+                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                </Link>
                                 }
-                              </div>
-                            </div>
+                              </DropdownToggle>
+                              <DropdownMenu center style={{ borderBottom: "1px solid #5299ba", borderLeft: "1px solid #5299ba", borderRight: "1px solid #5299ba", width: "350px", marginLeft: "10px", textAlign: 'center', backgroundColor: "black" }}>
+                                <DropdownItem className="dropdownItems">
+                                  {history.location.pathname === "/Cooperators" &&
+                                    <div>
+                                      <Link style={dropDownHoverTabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                    </div>
+                                  }
+                                  {history.location.pathname !== "/Cooperators" &&
+                                    <div>
+                                      <Link style={this.state.hoverCooperators ? dropDownHoverTabStyleDark : dropDownTabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                    </div>
+                                  }
+                                </DropdownItem>
+                                {/*<DropdownItem divider />*/}
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
 
                             {history.location.pathname === "/AboutMe" &&
                               <Link
@@ -566,7 +635,7 @@ class App extends React.Component {
                   </Link>
                             }
                           </Transform>
-                        </nav>
+                        </Nav>
                       }
                     </div>
                   </MediaQuery>
@@ -617,18 +686,18 @@ class App extends React.Component {
                 </MediaQuery>
 
                 <Switch>
-                  <Route exact path="/"><HomeForm darkMode={this.state.darkMode}/></Route>
-                  <Route exact path="/WorkTermReports"> <WorkTermReportsForm darkMode={this.state.darkMode}/> </Route>
-                  <Route exact path="/Cooperators"> <WorkTermOneBlogForm darkMode={this.state.darkMode}/> </Route>
-                  <Route exact path="/ContactMe"> <ContactForm darkMode={this.state.darkMode}/> </Route>
-                  <Route exact path="/AboutMe"><AboutMeForm darkMode={this.state.darkMode}/></Route>
+                  <Route exact path="/"><HomeForm darkMode={this.state.darkMode} history={this.state.history} /></Route>
+                  <Route exact path="/WorkTermReports"> <WorkTermReportsForm darkMode={this.state.darkMode} history={this.state.history} /> </Route>
+                  <Route exact path="/Cooperators"> <WorkTermOneBlogForm darkMode={this.state.darkMode} history={this.state.history} /> </Route>
+                  <Route exact path="/ContactMe"> <ContactForm darkMode={this.state.darkMode} history={this.state.history} /> </Route>
+                  <Route exact path="/AboutMe"><AboutMeForm darkMode={this.state.darkMode} history={this.state.history} /></Route>
                 </Switch>
               </div>
 
 
-              <div style={{ margin: "50px" }}>
+              <div style={{ margin: "50px", borderTop: "1px solid grey" }}>
                 <SocialIcon style={{ margin: "20px", width: "30px", height: "30px" }} url="https://www.linkedin.com/in/mackenzie-quigley-9680ba14a/" />
-                <br></br><label style={{ backgroundColor: "transparent", fontSize: "20px" }}>Website Designed and Created By Mackenzie Quigley</label> <br></br>
+                <br></br><label className={this.state.darkMode ? "darkText" : "lightText"} style={{ backgroundColor: "transparent", fontSize: "20px" }}>Designed and Created By Mackenzie Quigley</label> <br></br>
                 <button onClick={this.changeDark} >Light/Dark</button>
                 <br></br><button style={{ float: "right" }} onClick={this.addPosts} className="AddPost" id="AddPost">+</button> <br></br>
               </div>

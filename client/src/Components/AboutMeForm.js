@@ -22,7 +22,7 @@ class AboutMeForm extends React.Component {
           <h3 className="title" >About Me</h3>
 
           <MediaQuery query='(min-width: 1451px)'>           
-              <Grid marginLeft={20} marginRight={20} marginTop={0}>
+              <Grid marginLeft={10} marginRight={10} marginTop={0}>
                   <Grid size={5} >
                   <img  alt="Mackenzie Quigley" src={require("./MyText/mePicture.jpg")} style={{width: "280px", height: "400px"}}/>
                   </Grid>
