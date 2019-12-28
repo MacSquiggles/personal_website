@@ -18,10 +18,10 @@ class AboutMeForm extends React.Component {
 
   render() {
     return (
+      <div>
+      <MediaQuery query='(min-width: 1451px)'>
         <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
-          <h3 className="title" >About Me</h3>
-
-          <MediaQuery query='(min-width: 1451px)'>           
+          <h3 className="title" >About Me</h3>         
               <Grid marginLeft={10} marginRight={10} marginTop={0}>
                   <Grid size={5} >
                   <img  alt="Mackenzie Quigley" src={require("./MyText/mePicture.jpg")} style={{width: "280px", height: "400px"}}/>
@@ -30,11 +30,14 @@ class AboutMeForm extends React.Component {
                     <p className={this.state.darkMode ? "darkText" : "lightText"}>{myDescription.Text}</p>
                   </Grid>
               </Grid>
-            </MediaQuery>
-
+              </div>
+      </MediaQuery>
             <MediaQuery query='(max-width: 1450px)'>
+              <div className={this.state.darkMode ? "mobileTabContentDark" : "mobileTabContent"}>
+              <h3 className="title" >About Me</h3> 
                   <p className={this.state.darkMode ? "darkText" : "lightText"}>{myDescription.Text}</p>
                   <img  alt="Mackenzie Quigley" src={require("./MyText/mePicture.jpg")} style={{width: "180px", height: "250px"}}/>
+            </div>
             </MediaQuery>
         </div>
     );

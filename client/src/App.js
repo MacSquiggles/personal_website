@@ -14,16 +14,11 @@ import { SocialIcon } from 'react-social-icons';
 import { Transform } from 'react-animation-components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import 'bootstrap/dist/css/bootstrap.css';
+import SwitchToggle from "react-switch";
 import './App.css';
 
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
   Nav,
-  NavLink,
-  NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -372,7 +367,7 @@ class App extends React.Component {
   render() {
 
     return (
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center"}}>
         <ReactCSSTransitionGroup
           transitionName="background"
           transitionEnterTimeout={1000}
@@ -385,10 +380,9 @@ class App extends React.Component {
                   <div style={{ float: "Center" }}>
                     <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/compLogo.png")} style={{ width: "100px", height: "100px" }} />
                   </div> <br></br>
-                  <label style={{ fontSize: "60px", paddingBottom: "10px", border: "none", backgroundColor: "transparent", color: "white" }}>Mackenzie Quigley</label> <br></br>
-                  <br></br>
+                  <label style={{ fontSize: "60px", border: "none", backgroundColor: "transparent", color: "white" }}>Mackenzie Quigley</label> <br></br>
                   <label style={{ fontSize: "30px", paddingTop: "30px", border: "none", backgroundColor: "transparent", color: "white" }}>I am a student studying Software Engineering at the University of Guelph.<br></br> Click below to see my full website.</label> <br></br>
-                  <input type="submit" onClick={this.goToSite} onMouseEnter={this.hoverArrowOn} onMouseLeave={this.hoverArrowOff} style={this.state.hoverArrow ? { marginTop: "80px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "black" } : { marginTop: "80px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "white" }} value="↯" />
+                  <input type="submit" onClick={this.goToSite} onMouseEnter={this.hoverArrowOn} onMouseLeave={this.hoverArrowOff} style={this.state.hoverArrow ? { marginTop: "30px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "black" } : { marginTop: "30px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "white" }} value="↯" />
                   <br></br>
                 </Transform>
               </div>
@@ -563,7 +557,7 @@ class App extends React.Component {
                               <DropdownToggle nav caret color="white">
                                 {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators") &&
                                   <Link
-                                    style={this.state.hoverReports ? hoverTabStyle : tabStyle}
+                                    style={this.state.hoverReports ? hoverTabStyleDark : tabStyleDark}
                                     onClick={this.selectReport}
                                     to="/WorkTermReports">
                                     <i class="fas fa-briefcase"></i> Work Term Reports
@@ -698,7 +692,7 @@ class App extends React.Component {
               <div style={{ margin: "50px", borderTop: "1px solid grey" }}>
                 <SocialIcon style={{ margin: "20px", width: "30px", height: "30px" }} url="https://www.linkedin.com/in/mackenzie-quigley-9680ba14a/" />
                 <br></br><label className={this.state.darkMode ? "darkText" : "lightText"} style={{ backgroundColor: "transparent", fontSize: "20px" }}>Designed and Created By Mackenzie Quigley</label> <br></br>
-                <button onClick={this.changeDark} >Light/Dark</button>
+                <p className={this.state.darkMode ? "darkText" : "lightText"}>Dark Mode:</p><SwitchToggle onChange={this.changeDark} checked={this.state.darkMode} />
                 <br></br><button style={{ float: "right" }} onClick={this.addPosts} className="AddPost" id="AddPost">+</button> <br></br>
               </div>
             </Router>

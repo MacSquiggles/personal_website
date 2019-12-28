@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery  from 'react-responsive';
 
 let aboutEmployer = "The company I worked for this work term was called the Co-operators, which is a Canada wide insurance company. " +
 "The interesting thing about the Co-operators is that they are actually a cooperative company. What this means is that in a way, " +
@@ -66,6 +67,8 @@ class WorkTermOneBlogForm extends React.Component {
 
   render() {
     return (
+      <div>
+      <MediaQuery query='(min-width: 1225px)'>
       <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
           <h3 className="title">Jr. Systems Developer</h3>
           <p className="placement">The Co-operators</p> <br></br>
@@ -81,6 +84,26 @@ class WorkTermOneBlogForm extends React.Component {
             <label className={this.state.darkMode ? "darkText" : "lightText"}>Job Description</label>
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{jobDescription}</p>
           </div>
+    </div>
+    </MediaQuery>
+    <MediaQuery query='(max-width: 1224px)'>
+        <div className={this.state.darkMode ? "mobileTabContentDark" : "mobileTabContent"}>
+          <h3 className="title">Jr. Systems Developer</h3>
+          <p className="placement">The Co-operators</p> <br></br>
+          <div className="mobilePostDiv" id="mobilePostDiv">
+            <label className={this.state.darkMode ? "darkText" : "lightText"}>About The Co-operators</label>
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{aboutEmployer}</p>
+          </div>
+          <div className="mobilePostDiv" id="mobilePostDiv">
+            <label className={this.state.darkMode ? "darkText" : "lightText"}>My Goals</label>
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{myGoals}</p>
+          </div>
+          <div className="mobilePostDiv" id="mobilePostDiv">
+            <label className={this.state.darkMode ? "darkText" : "lightText"}>Job Description</label>
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{jobDescription}</p>
+          </div>
+    </div>
+    </MediaQuery>
     </div>
     );
   }
