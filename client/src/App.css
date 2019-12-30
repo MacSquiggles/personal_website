@@ -106,7 +106,7 @@ p {
   margin: auto;
   padding: 10px;
   float: right;
-  margin-right: 100px;
+  margin-right: 60px;
   display: block;
 }
 
@@ -308,7 +308,6 @@ input {
 .mobileTabContentDark {
   text-align: center;
   width: 90%;
-  margin-top: 130px;
   padding: 10px;
   margin-bottom: 20px;
   display: block;
@@ -316,6 +315,7 @@ input {
   margin: auto;
   border: none;
   color: white;
+  margin-top: 130px;
 }
 
 

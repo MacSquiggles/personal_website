@@ -1,23 +1,7 @@
 import React from 'react';
 import MediaQuery  from 'react-responsive';
 
-let aboutEmployer = "The company I worked for this work term was called the Co-operators, which is a Canada wide insurance company. " +
-"The interesting thing about the Co-operators is that they are actually a cooperative company. What this means is that in a way, " +
-"the company fundamentally is democratically owned by its members. There is a rule that insurance companies can not directly be " +
-"cooperative, so the loophole they found with the Co-operators is to have a cooperative own the Co-operators . You can see the " +
-"cooperative spirit indirectly spread from the roots, up to the branches of the whole company. For a corporation, the Co-operators " +
-"takes a lot of pride in helping insure Canadians so they feel financially secure, and not just doing what they have to to make a " +
-"profit. The focus on client satisfaction and support also finds its way into the workers at the company. In my experience, the " +
-"Co-operators go the extra distance to ensure employee satisfaction, and the betterment of communities. As an example, full " +
-"time workers get two paid days where they don’t come into work, and volunteer their time to whichever cause they see fit. " +
-"There are planned community days through the company, or you can pick your own cause to contribute too, as long as it is " +
-"giving back to the community. This company support really creates a positive work environment. My whether it was my team members, " +
-"people in the cafeteria, or strangers in the elevator, everyone was always very polite, and seemed genuinely happy to be there." + 
-"At the Guelph location where I worked, a large amount of the people working there were part of the IT team. At the Co-operators, " +
-"people in Computer Science and Software Engineering are needed for a variety of different tasks including: front-end web development, " +
-"back-end development, functional testing, load testing, automated testing, environment building, and environment maintenance. The " +
-"team I worked on was the Build Automation and Release team (BAR team)," +
-" and we were responsible for creating and automating: testing, environments, and releases.";
+let aboutEmployer = "The company I worked for in the S19 and F19 semesters was called the Co-operators, which is a Canada wide insurance company. Something very interesting about the Co-operators is that it is actually a cooperative company. This means that the company fundamentally is democratically owned by its members. However, there is a rule that insurance companies can not be cooperative, so the founders created a loophole where they created a cooperative company to own the Co-operators. You can see the cooperative spirit indirectly spread from the roots, up to the branches of the whole company. The Co-operators is very passionate about helping insure Canadians so they feel financially secure, and not just doing what they have to to make a profit. The focus on client satisfaction and support also finds its way into the workers at the company. In my experience, the Co-operators go the extra distance to ensure employee satisfaction, and the betterment of communities. As an example, full time workers get two paid days where they don’t work, and instead volunteer their time to whichever cause they see fit. There are planned community days through the company, or you can pick your own cause to contribute too, as long as it is giving back to the community. This company support creates a positive work environment. Whether it was my team members, people in the cafeteria, or strangers in the elevator, everyone was always very polite, and genuinely happy to be there. At the Guelph location I worked at, a large amount of people working there were part of the IT team. At the Co-operators, people in Computer Science and Software Engineering are needed for a variety of different tasks including: front-end web development, back-end development, functional testing, load testing, automated testing, environment building, and environment maintenance. The team I worked on was the Build Automation and Release team (BAR team), and we were responsible for creating and automating: testing, environments, and releases.";
 
 let myGoals = "I made five goals to tackle within my first work term at the Co-operators. These goals were: learn " +
 "how to work in a disciplined agile environment, learn how to efficiently create React JS applications, learn how to work with a team of people effectively become comfortable with accepting my inability to do everything alone, and become more ambitious and ask/suggest new work when I finish current projects. All of these goals were important to me for various different reasons, and throughout my work term I created smaller, more skill based goals as I worked on more projects."

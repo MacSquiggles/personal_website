@@ -78,7 +78,7 @@ class Contact extends React.Component {
     }
     else {
       modalTitle = "Email Could Not Be Sent";
-      modalText = "Due to some issue, your email was unable to send. You can try again, or email me directly at slina.frich@gmail.com. Sorry for the inconvenience!";
+      modalText = "Due to some issue, your email was unable to send. You can try again, or email me directly at mackenziequigley@outlook.com. Sorry for the inconvenience!";
       this.setState({ modalIsOpen: true });
     }
   }

@@ -70,8 +70,8 @@ const dropDownTabStyleDark = {
   color: '#5299ba',
   textAlign: 'center',
   fontSize: '24px',
-  marginLeft: "30px",
-  marginRight: "30px",
+  marginLeft: "20px",
+  marginRight: "20px",
   textDecoration: 'none',
 };
 
@@ -79,8 +79,8 @@ const dropDownHoverTabStyleDark = {
   color: 'white',
   textAlign: 'center',
   fontSize: '24px',
-  marginLeft: "30px",
-  marginRight: "30px",
+  marginLeft: "20px",
+  marginRight: "20px",
   textDecoration: 'none',
   borderBottom: "3px solid white"
 };
@@ -109,9 +109,9 @@ const tabStyle = {
   backgroundColor: "transparent",
   color: 'white',
   textAlign: 'center',
-  fontSize: '30px',
-  marginLeft: "30px",
-  marginRight: "30px",
+  fontSize: '26px',
+  marginLeft: "20px",
+  marginRight: "20px",
   textDecoration: 'none',
   borderBottom: "3px solid transparent"
 };
@@ -119,9 +119,9 @@ const tabStyle = {
 const hoverTabStyle = {
   color: 'black',
   textAlign: 'center',
-  fontSize: '30px',
-  marginLeft: "30px",
-  marginRight: "30px",
+  fontSize: '26px',
+  marginLeft: "20px",
+  marginRight: "20px",
   textDecoration: 'none',
   borderBottom: "3px solid black"
 };
@@ -130,9 +130,9 @@ const tabStyleDark = {
   backgroundColor: "transparent",
   color: '#5299ba',
   textAlign: 'center',
-  fontSize: '30px',
-  marginLeft: "30px",
-  marginRight: "30px",
+  fontSize: '26px',
+  marginLeft: "20px",
+  marginRight: "20px",
   textDecoration: 'none',
   borderBottom: "3px solid transparent"
 };
@@ -140,9 +140,9 @@ const tabStyleDark = {
 const hoverTabStyleDark = {
   color: 'white',
   textAlign: 'center',
-  fontSize: '30px',
-  marginLeft: "30px",
-  marginRight: "30px",
+  fontSize: '26px',
+  marginLeft: "20px",
+  marginRight: "20px",
   textDecoration: 'none',
   borderBottom: "3px solid white"
 };
