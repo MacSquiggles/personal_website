@@ -165,7 +165,6 @@ class App extends React.Component {
       hoverCooperators: false,
       selectReport: false,
       darkMode: false,
-      start: true,
       hoverArrow: false,
       history: history,
       isOpen: false
@@ -210,7 +209,6 @@ class App extends React.Component {
 
   async goToSite() {
     await this.setState({ hoverArrow: true });
-    await this.setState({ start: false });
   }
 
   async changeDark() {
@@ -368,29 +366,6 @@ class App extends React.Component {
 
     return (
       <div style={{ textAlign: "center"}}>
-        <ReactCSSTransitionGroup
-          transitionName="background"
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}
-        >
-          {this.state.start === true &&
-            <div className="startMenu" id="startMenu" style={{ paddingTop: "50px" }}>
-              <div style={{ margin: "20px", padding: "30px", paddingTop: "10px", borderTop: "2px solid white", borderBottom: "2px solid white" }}>
-                <Transform enterTransform="translateY(30px)" in>
-                  <div style={{ float: "Center" }}>
-                    <img alt="Mackenzie Quigley Logo" src={require("./Components/MyText/compLogo.png")} style={{ width: "100px", height: "100px" }} />
-                  </div> <br></br>
-                  <label style={{ fontSize: "60px", border: "none", backgroundColor: "transparent", color: "white" }}>Mackenzie Quigley</label> <br></br>
-                  <label style={{ fontSize: "30px", paddingTop: "30px", border: "none", backgroundColor: "transparent", color: "white" }}>I am a student studying Software Engineering at the University of Guelph.<br></br> Click below to see my full website.</label> <br></br>
-                  <input type="submit" onClick={this.goToSite} onMouseEnter={this.hoverArrowOn} onMouseLeave={this.hoverArrowOff} style={this.state.hoverArrow ? { marginTop: "30px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "black" } : { marginTop: "30px", fontSize: "60px", border: "none", backgroundColor: "transparent", color: "white" }} value="↯" />
-                  <br></br>
-                </Transform>
-              </div>
-            </div>
-          }
-        </ReactCSSTransitionGroup>
-
-        {this.state.start === false &&
           <div className="App" style={this.state.darkMode ? { backgroundColor: "black" } : { backgroundColor: "white" }}>
             <Router>
               <MediaQuery query='(min-width: 1225px)'>
@@ -697,7 +672,6 @@ class App extends React.Component {
               </div>
             </Router>
           </div>
-        }
       </div>
     );
   }
