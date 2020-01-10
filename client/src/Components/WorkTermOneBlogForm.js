@@ -91,18 +91,18 @@ class WorkTermOneBlogForm extends React.Component {
             <label className={this.state.darkMode ? "darkText" : "lightText"}>Web Development</label>
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopment}</p> <br></br>
 
-            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentTwo}</p>
-            <img  alt="Adding New Job Request Light" src={require("./MyText/AddingJobRequest.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentTwo}</p> <br></br>
             
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentThree}</p> 
+            <img  alt="Adding New Job Request Light" src={require("./MyText/AddingJobRequest.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/>
+
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFour}</p> 
             <img  alt="Dark Mode View Client" src={require("./MyText/Dark_View.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             <img  alt="Light All Clients View" src={require("./MyText/AllClients.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             
-            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFour}</p> 
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFive}</p> <br></br>
             <img  alt="Dark Mode Create Client" src={require("./MyText/Dark_Create.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             <img  alt="Expandable Client Policy Options" src={require("./MyText/ExpandablePolicyOptions.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
-
-            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFive}</p> <br></br>
 
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentSix}</p> 
             <img  alt="Pagination" src={require("./MyText/Pagination_RequestJSON.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
@@ -162,27 +162,29 @@ class WorkTermOneBlogForm extends React.Component {
           </div>
           <div className="mobilePostDiv" id="mobilePostDiv">
           <label className={this.state.darkMode ? "darkText" : "lightText"}>Web Development</label>
+          <label className={this.state.darkMode ? "darkText" : "lightText"}>Web Development</label>
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopment}</p> <br></br>
 
-            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentTwo}</p>
-            <img  alt="Adding New Job Request Light" src={require("./MyText/AddingJobRequest.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentTwo}</p> <br></br>
             
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentThree}</p> 
+            <img  alt="Adding New Job Request Light" src={require("./MyText/AddingJobRequest.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/>
+
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFour}</p> 
             <img  alt="Dark Mode View Client" src={require("./MyText/Dark_View.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             <img  alt="Light All Clients View" src={require("./MyText/AllClients.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             
-            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFour}</p> 
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFive}</p> <br></br>
             <img  alt="Dark Mode Create Client" src={require("./MyText/Dark_Create.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             <img  alt="Expandable Client Policy Options" src={require("./MyText/ExpandablePolicyOptions.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
-
-            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentFive}</p> <br></br>
 
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentSix}</p> 
             <img  alt="Pagination" src={require("./MyText/Pagination_RequestJSON.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             <img  alt="Light Download to CSV" src={require("./MyText/DownloadToCSV.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/> 
             <img  alt="Downloaded CSV" src={require("./MyText/DownloadedCSV.png")} style={{border: "1px solid grey", width: "80%", height: "80%"}}/>
 
-            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentSeven}</p> </div>
+            <p className={this.state.darkMode ? "darkText" : "lightText"}>{webDevelopmentSeven}</p> 
+          </div>
           <div className="mobilePostDiv" id="mobilePostDiv">
             <label className={this.state.darkMode ? "darkText" : "lightText"}>Conclusions</label>
             <p className={this.state.darkMode ? "darkText" : "lightText"}>{conclusion}</p> 
