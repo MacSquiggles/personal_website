@@ -12,7 +12,6 @@ import CheeseburgerMenu from 'cheeseburger-menu';
 import HamburgerMenu from 'react-hamburger-menu';
 import { SocialIcon } from 'react-social-icons';
 import { Transform } from 'react-animation-components';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import 'bootstrap/dist/css/bootstrap.css';
 import SwitchToggle from "react-switch";
 import './App.css';
@@ -422,14 +421,15 @@ class App extends React.Component {
                               </Link>
                             }
 
+
                             <UncontrolledDropdown nav inNavbar>
-                              <DropdownToggle nav caret color="white">
+                              <DropdownToggle nav color="white">
                                 {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators") &&
                                   <Link
                                     style={this.state.hoverReports ? hoverTabStyle : tabStyle}
                                     onClick={this.selectReport}
                                     to="/WorkTermReports">
-                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                    <i class="fas fa-briefcase"></i>Work Term Reports<i class="fas fa-caret-down"></i>
                                     </Link>
                                 }
 
@@ -438,7 +438,7 @@ class App extends React.Component {
                                     style={hoverTabStyle}
                                     onClick={this.selectReport}
                                     to="/WorkTermReports">
-                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                    <i class="fas fa-briefcase"></i> Work Term Reports <i class="fas fa-caret-down"></i>
                                 </Link>
                                 }
                               </DropdownToggle>
