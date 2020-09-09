@@ -5,8 +5,9 @@ import HomeForm from "./Components/HomeForm";
 import ContactForm from "./Components/Contact";
 import WorkTermReportsForm from "./Components/WorkTermReportsForm";
 import WorkTermOneBlogForm from "./Components/WorkTermOneBlogForm";
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom'
-import { createBrowserHistory } from 'history';
+import WorkTermThreeBlogForm from "./Components/WorkTermThreeBlogForm";
+import { Route, Link, Switch, Router } from 'react-router-dom'
+import history from './Components/history';
 import MediaQuery from 'react-responsive';
 import CheeseburgerMenu from 'cheeseburger-menu';
 import HamburgerMenu from 'react-hamburger-menu';
@@ -24,7 +25,6 @@ import {
   DropdownItem
 } from 'reactstrap';
 
-let history = createBrowserHistory();
 
 let myModalStyle = {
   overlay: {
@@ -165,8 +165,8 @@ class App extends React.Component {
       selectReport: false,
       darkMode: false,
       hoverArrow: false,
-      history: history,
-      isOpen: false
+      isOpen: false,
+      hoverManulife: false
     };
     this.toggle = this.toggle.bind(this);
 
@@ -193,9 +193,15 @@ class App extends React.Component {
 
     this.hoverArrowOn = this.hoverArrowOn.bind(this);
     this.hoverArrowOff = this.hoverArrowOff.bind(this);
+
     this.hoverCooperatorsOn = this.hoverCooperatorsOn.bind(this);
     this.hoverCooperatorsOff = this.hoverCooperatorsOff.bind(this);
     this.selectCooperators = this.selectCooperators.bind(this);
+
+    this.hoverManulifeOn = this.hoverManulifeOn.bind(this);
+    this.hoverManulifeOff = this.hoverManulifeOff.bind(this);
+    this.selectManulife = this.selectManulife.bind(this);
+
     this.changeDark = this.changeDark.bind(this);
     this.goToSite = this.goToSite.bind(this);
   }
@@ -216,20 +222,26 @@ class App extends React.Component {
   }
 
   async selectReport() {
-    this.setState({ hoverCooperators: false });
-    this.setState({ selectReport: true });
-    this.setState({ hoverAboutMe: false });
-    this.setState({ hoverHome: false });
-    this.setState({ hoverContactMe: false });
+    this.setState({ 
+      hoverCooperators: false,
+      selectReport: true,
+      hoverAboutMe: false,
+      hoverHome: false,
+      hoverContactMe: false,
+      hoverManulife: false 
+    });
     await history.push("/WorkTermReports");
   }
 
   async selectCooperators() {
-    this.setState({ hoverCooperators: true });
-    this.setState({ selectReport: true });
-    this.setState({ hoverAboutMe: false });
-    this.setState({ hoverHome: false });
-    this.setState({ hoverContactMe: false });
+    this.setState({ 
+      hoverCooperators: true,
+      selectReport: true,
+      hoverAboutMe: false,
+      hoverHome: false,
+      hoverContactMe: false,
+      hoverManulife: false 
+    });
     await history.push("/Cooperators");
   }
   hoverCooperatorsOn() {
@@ -259,11 +271,14 @@ class App extends React.Component {
   }
 
   async selectHome() {
-    this.setState({ hoverAboutMe: false });
-    this.setState({ hoverHome: true });
-    this.setState({ selectReport: false });
-    this.setState({ hoverCooperators: false });
-    this.setState({ hoverContactMe: false });
+    this.setState({ 
+      hoverCooperators: false,
+      selectReport: false,
+      hoverAboutMe: false,
+      hoverHome: true,
+      hoverContactMe: false,
+      hoverManulife: false 
+    });
     await history.push("/");
   }
 
@@ -279,11 +294,14 @@ class App extends React.Component {
 
 
   async selectAboutMe() {
-    this.setState({ hoverAboutMe: true });
-    this.setState({ hoverHome: false });
-    this.setState({ selectReport: false });
-    this.setState({ hoverCooperators: false });
-    this.setState({ hoverContactMe: false });
+    this.setState({ 
+      hoverCooperators: false,
+      selectReport: false,
+      hoverAboutMe: true,
+      hoverHome: false,
+      hoverContactMe: false,
+      hoverManulife: false 
+    });
     await history.push("/AboutMe");
   }
 
@@ -297,12 +315,38 @@ class App extends React.Component {
     }
   }
 
+
+  async selectManulife() {
+    this.setState({ 
+      hoverCooperators: false,
+      selectReport: true,
+      hoverAboutMe: false,
+      hoverHome: false,
+      hoverContactMe: false,
+      hoverManulife: true 
+    });
+    await history.push("/Manulife");
+  }
+
+  hoverManulifeOn() {
+    this.setState({ hoverManulife: true });
+  }
+
+  hoverManulifeOff() {
+    if (history.location.pathname !== "/Manulife") {
+      this.setState({ hoverManulife: false });
+    }
+  }
+
   async selectContactMe() {
-    this.setState({ hoverAboutMe: false });
-    this.setState({ hoverHome: false });
-    this.setState({ selectReport: false });
-    this.setState({ hoverCooperators: false });
-    this.setState({ hoverContactMe: true });
+    this.setState({ 
+      hoverCooperators: false,
+      selectReport: false,
+      hoverAboutMe: false,
+      hoverHome: false,
+      hoverContactMe: true,
+      hoverManulife: false 
+    });
     await history.push("/ContactMe");
   }
 
@@ -366,7 +410,7 @@ class App extends React.Component {
     return (
       <div style={{ textAlign: "center"}}>
           <div className="App" style={this.state.darkMode ? { backgroundColor: "black" } : { backgroundColor: "white" }}>
-            <Router>
+          <Router history={history}>
               <MediaQuery query='(min-width: 1225px)'>
                 <Modal
                   isOpen={this.state.modalIsOpen}
@@ -455,7 +499,19 @@ class App extends React.Component {
                                     </div>
                                   }
                                 </DropdownItem>
-                                {/*<DropdownItem divider />*/}
+                                <DropdownItem divider />
+                                <DropdownItem className="dropdownItems">
+                                  {history.location.pathname === "/Manulife" &&
+                                    <div>
+                                      <Link style={dropDownItemHoverTabStyle} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                    </div>
+                                  }
+                                  {history.location.pathname !== "/Manulife" &&
+                                    <div>
+                                      <Link style={this.state.hoverManulife ? dropDownItemHoverTabStyle : dropDownItemStyle} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                    </div>
+                                  }
+                                </DropdownItem>
                               </DropdownMenu>
                             </UncontrolledDropdown>
 
@@ -655,11 +711,12 @@ class App extends React.Component {
                 </MediaQuery>
 
                 <Switch>
-                  <Route exact path="/"><HomeForm darkMode={this.state.darkMode} history={this.state.history} /></Route>
-                  <Route exact path="/WorkTermReports"> <WorkTermReportsForm darkMode={this.state.darkMode} history={this.state.history} /> </Route>
-                  <Route exact path="/Cooperators"> <WorkTermOneBlogForm darkMode={this.state.darkMode} history={this.state.history} /> </Route>
-                  <Route exact path="/ContactMe"> <ContactForm darkMode={this.state.darkMode} history={this.state.history} /> </Route>
-                  <Route exact path="/AboutMe"><AboutMeForm darkMode={this.state.darkMode} history={this.state.history} /></Route>
+                  <Route exact path="/"><HomeForm darkMode={this.state.darkMode} /></Route>
+                  <Route exact path="/WorkTermReports"> <WorkTermReportsForm darkMode={this.state.darkMode}/> </Route>
+                  <Route exact path="/Cooperators"> <WorkTermOneBlogForm darkMode={this.state.darkMode} /> </Route>
+                  <Route exact path="/Manulife"> <WorkTermThreeBlogForm darkMode={this.state.darkMode} /> </Route>
+                  <Route exact path="/ContactMe"> <ContactForm darkMode={this.state.darkMode} /> </Route>
+                  <Route exact path="/AboutMe"><AboutMeForm darkMode={this.state.darkMode} /></Route>
                 </Switch>
               </div>
 

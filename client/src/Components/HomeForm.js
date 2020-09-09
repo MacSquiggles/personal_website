@@ -1,7 +1,7 @@
 import React from 'react';
 import MediaQuery  from 'react-responsive';
-import { createBrowserHistory } from 'history';
-let history = createBrowserHistory();
+import history from './history';
+import {Router} from 'react-router-dom';
 
 class HomeForm extends React.Component {
   constructor(props) {
@@ -10,15 +10,21 @@ class HomeForm extends React.Component {
     this.state = {
       darkMode: props.darkMode,
     }
+    this.goToCooperators = this.goToCooperators.bind(this)
   }
 
   componentWillReceiveProps(newProps) {
     this.setState({darkMode: newProps.darkMode});
   }
 
+  goToCooperators() {
+    
+  }
+
   render() {
     return (
       <div>
+        <Router history={history}>
         <MediaQuery query='(min-width: 1225px)'>
         <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
             <h3 className="title" >Welcome To My Website</h3>
@@ -31,9 +37,8 @@ class HomeForm extends React.Component {
              program at the University of Guelph. To learn more about my first and second work term at The 
              Co-operators, click the button below.</p> <br></br>
 
-             {/*<Redirect to='/Cooperators' /> */}
              <button
-                onClick={() => { history.push('/Cooperators'); window.location.reload();}}
+                onClick={function() { history.push("/Cooperators"); }}
               >
                 The Co-operators
               </button>
@@ -53,15 +58,15 @@ class HomeForm extends React.Component {
              program at the University of Guelph. To learn more about my first and second work term at The 
              Co-operators, click the button below.</p> <br></br>
 
-             {/*<Redirect to='/Cooperators' /> */}
              <button
-                onClick={() => { history.push('/Cooperators'); window.location.reload();}}
+                onClick={function() { history.push("/Cooperators"); }}
               >
                 The Co-operators
               </button>
              <br></br>
         </div>
         </MediaQuery>
+        </Router>
       </div>
     );
   }

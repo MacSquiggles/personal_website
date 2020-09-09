@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-var mysql = require('mysql');
+/*var mysql = require('mysql');
 let username = "macsquiggles";
 let password = "Password@1";
 
@@ -28,16 +28,19 @@ let sql_host = "us-cdbr-iron-east-02.cleardb.net";
 let sql_database = "heroku_852fe942c3b73d3";
 let sql_password = "6459330d";
 let sql_user = "ba3c2c9bf3031d";
+*/
+
 let email_password = "mquigley01";   
 var nodemailer = require('nodemailer');
 
+/*
 var db_config = {
   host: sql_host,
     user: sql_user,
     password: sql_password,
     database: sql_database
 };
-
+*/
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -68,6 +71,8 @@ app.post('/api/v1/SendEmail', function(req, res) {
   });
 });
 
+
+/*
 const pool = mysql.createPool({
   host: sql_host,
   user: sql_user,
@@ -135,7 +140,7 @@ app.post('/api/v1/checkUser', function(req, res) {
     res.send("{\"error\":\"Error\"}");
   }
 });
-
+*/
 
 if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'client/build')));  
   app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'client/build/index.html'));  

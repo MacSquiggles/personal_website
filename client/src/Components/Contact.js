@@ -1,6 +1,8 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
 import Modal from 'react-modal';
+import history from './history';
+import {Router} from 'react-router-dom'
 
 let modalTitle = "";
 let modalText = "";
@@ -86,6 +88,7 @@ class Contact extends React.Component {
   render() {
     return (
       <div>
+        <Router history={history}>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -122,6 +125,7 @@ class Contact extends React.Component {
             </div>
           </div>
         </MediaQuery>
+        </Router>
       </div>
     );
   }

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Grid } from 'gymnast'
 import MediaQuery  from 'react-responsive';
-let myDescription = require("./MyText/AboutMe_MyDescription");
+import history from './history';
+import {Router} from 'react-router-dom'
+
+let myDescription = require("./Content/AboutMe_MyDescription");
 
 class AboutMeForm extends React.Component {
   constructor(props) {
@@ -19,12 +22,13 @@ class AboutMeForm extends React.Component {
   render() {
     return (
       <div>
+        <Router history={history}>
       <MediaQuery query='(min-width: 1451px)'>
         <div className={this.state.darkMode ? "tabContentDark" : "tabContent"}>
           <h3 className="title" >About Me</h3>         
               <Grid marginLeft={10} marginRight={10} marginTop={0}>
                   <Grid size={5} >
-                  <img  alt="Mackenzie Quigley" src={require("./MyText/mePicture.jpg")} style={{width: "280px", height: "400px"}}/>
+                  <img  alt="Mackenzie Quigley" src={require("./Content/mePicture.jpg")} style={{width: "280px", height: "400px"}}/>
                   </Grid>
                   <Grid size={6}>
                     <p className={this.state.darkMode ? "darkText" : "lightText"}>{myDescription.Text}</p>
@@ -36,9 +40,10 @@ class AboutMeForm extends React.Component {
               <div className={this.state.darkMode ? "mobileTabContentDark" : "mobileTabContent"}>
               <h3 className="title" >About Me</h3> 
                   <p className={this.state.darkMode ? "darkText" : "lightText"}>{myDescription.Text}</p>
-                  <img  alt="Mackenzie Quigley" src={require("./MyText/mePicture.jpg")} style={{width: "180px", height: "250px"}}/>
+                  <img  alt="Mackenzie Quigley" src={require("./Content/mePicture.jpg")} style={{width: "180px", height: "250px"}}/>
             </div>
             </MediaQuery>
+            </Router>
         </div>
     );
   }
