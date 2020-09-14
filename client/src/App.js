@@ -617,7 +617,19 @@ class App extends React.Component {
                                     </div>
                                   }
                                 </DropdownItem>
-                                {/*<DropdownItem divider />*/}
+                                <DropdownItem divider />
+                                <DropdownItem className="dropdownItems">
+                                  {history.location.pathname === "/Manulife" &&
+                                    <div>
+                                      <Link style={dropDownTabStyleDark} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                    </div>
+                                  }
+                                  {history.location.pathname !== "/Manulife" &&
+                                    <div>
+                                      <Link style={this.state.hoverManulife ? dropDownHoverTabStyleDark : dropDownTabStyleDark} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                    </div>
+                                  }
+                                </DropdownItem>
                               </DropdownMenu>
                             </UncontrolledDropdown>
 
