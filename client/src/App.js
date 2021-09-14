@@ -58,9 +58,7 @@ const mobileOptions = {
   backgroundColor: "white",
   color: 'black',
   textAlign: 'center',
-  fontSize: '24px',
-  paddingTop: "10px",
-  paddingBottom: "10px",
+  fontSize: '20px',
   textDecoration: 'none',
   border: "1px solid grey",
 }
@@ -472,8 +470,10 @@ class App extends React.Component {
                     <div className={this.state.darkMode ? "myDarkHeader" : "myheader"}>
 
                       <Transform enterTransform="translateY(20px)" in>
-                        <p style={this.state.darkMode ? { fontSize: "40px", margin: "auto", color: "#5299ba", float: "left", position: "fixed", fontWeight: "bold", marginLeft: "20px" } : { fontSize: "40px", color: "black", float: "left", position: "fixed", fontWeight: "bold", margin: "auto", marginLeft: "20px" }}>
-                          MQ <i class="fas fa-laptop-code"></i></p>
+                        <p style={this.state.darkMode ? { fontSize: "20px", margin: "auto", color: "#5299ba", float: "left", position: "fixed", fontWeight: "bold", marginLeft: "20px" } : { fontSize: "20px", color: "black", float: "left", position: "fixed", fontWeight: "bold", margin: "auto", marginLeft: "20px" }}>
+                        Mackenzie Quigley </p>
+                        <br/>
+                        <p style={this.state.darkMode ? { fontSize: "40px", margin: "auto", color: "#5299ba", float: "left", position: "fixed", fontWeight: "bold", marginLeft: "70px" } : { fontSize: "40px", color: "black", float: "left", position: "fixed", fontWeight: "bold", margin: "auto", marginLeft: "70px" }}><i class="fas fa-laptop-code"></i></p>
                       </Transform>
 
                       {!this.state.darkMode &&
@@ -503,34 +503,34 @@ class App extends React.Component {
 
                             <UncontrolledDropdown nav inNavbar>
                               <DropdownToggle nav color="white">
-                                {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators") &&
+                                {(history.location.pathname !== "/WorkTermReports" && history.location.pathname !== "/Cooperators" && history.location.pathname !== "/Manulife" && history.location.pathname !== "/Designware") &&
                                   <Link
                                     style={this.state.hoverReports ? hoverTabStyle : tabStyle}
                                     onClick={this.selectReport}
                                     to="/WorkTermReports">
-                                    <i class="fas fa-briefcase"></i>Work Term Reports<i class="fas fa-caret-down"></i>
+                                    <i class="fas fa-briefcase"></i> Reports<i class="fas fa-caret-down"></i>
                                     </Link>
                                 }
 
-                                {(history.location.pathname === "/WorkTermReports" || history.location.pathname === "/Cooperators") &&
+                                {(history.location.pathname === "/WorkTermReports" || history.location.pathname === "/Cooperators" || history.location.pathname === "/Manulife" || history.location.pathname === "/Designware") &&
                                   <Link
                                     style={hoverTabStyle}
                                     onClick={this.selectReport}
                                     to="/WorkTermReports">
-                                    <i class="fas fa-briefcase"></i> Work Term Reports <i class="fas fa-caret-down"></i>
+                                    <i class="fas fa-briefcase"></i> Reports <i class="fas fa-caret-down"></i>
                                 </Link>
                                 }
                               </DropdownToggle>
-                              <DropdownMenu center style={{ width: "350px", marginLeft: "10px", textAlign: 'center' }}>
+                              <DropdownMenu center style={{ width: "200px", marginLeft: "20px", textAlign: 'center' }}>
                                 <DropdownItem className="dropdownItems">
                                   {history.location.pathname === "/Cooperators" &&
                                     <div>
-                                      <Link style={dropDownItemHoverTabStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                      <Link style={dropDownItemHoverTabStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">Co-operators</Link> <br></br>
                                     </div>
                                   }
                                   {history.location.pathname !== "/Cooperators" &&
                                     <div>
-                                      <Link style={this.state.hoverCooperators ? dropDownItemHoverTabStyle : dropDownItemStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                      <Link style={this.state.hoverCooperators ? dropDownItemHoverTabStyle : dropDownItemStyle} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">Co-operators</Link> <br></br>
                                     </div>
                                   }
                                 </DropdownItem>
@@ -568,7 +568,7 @@ class App extends React.Component {
                               <Link
                                 style={hoverTabStyle}
                                 to="/AboutMe">
-                                <i class="fas fa-id-card"></i> About Me
+                                <i class="fas fa-id-card"></i> About
                   </Link>
                             }
 
@@ -579,7 +579,7 @@ class App extends React.Component {
                                 onMouseEnter={this.hoverAboutMeOn}
                                 onMouseLeave={this.hoverAboutMeoff}
                                 to="/AboutMe">
-                                <i class="fas fa-id-card"></i> About Me
+                                <i class="fas fa-id-card"></i> About
                   </Link>
                             }
 
@@ -588,7 +588,7 @@ class App extends React.Component {
                               <Link
                                 style={hoverTabStyle}
                                 to="/ContactMe">
-                                <i class="fas fa-envelope"></i> Contact Me
+                                <i class="fas fa-envelope"></i> Contact
                   </Link>
                             }
 
@@ -599,7 +599,7 @@ class App extends React.Component {
                                 onMouseEnter={this.hoverContactMeOn}
                                 onMouseLeave={this.hoverContactMeoff}
                                 to="/ContactMe">
-                                <i class="fas fa-envelope"></i> Contact Me
+                                <i class="fas fa-envelope"></i> Contact
                   </Link>
                             }
                           </Transform>
@@ -639,7 +639,7 @@ class App extends React.Component {
                                     style={this.state.hoverReports ? hoverTabStyleDark : tabStyleDark}
                                     onClick={this.selectReport}
                                     to="/WorkTermReports">
-                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                    <i class="fas fa-briefcase"></i> Reports
                                     </Link>
                                 }
 
@@ -648,20 +648,20 @@ class App extends React.Component {
                                     style={hoverTabStyleDark}
                                     onClick={this.selectReport}
                                     to="/WorkTermReports">
-                                    <i class="fas fa-briefcase"></i> Work Term Reports
+                                    <i class="fas fa-briefcase"></i> Reports
                                 </Link>
                                 }
                               </DropdownToggle>
-                              <DropdownMenu center style={{ borderBottom: "1px solid #5299ba", borderLeft: "1px solid #5299ba", borderRight: "1px solid #5299ba", width: "350px", marginLeft: "10px", textAlign: 'center', backgroundColor: "black" }}>
+                              <DropdownMenu center style={{ borderBottom: "1px solid #5299ba", borderLeft: "1px solid #5299ba", borderRight: "1px solid #5299ba", width: "200px", marginLeft: "20px", textAlign: 'center', backgroundColor: "black" }}>
                                 <DropdownItem className="dropdownItems">
                                   {history.location.pathname === "/Cooperators" &&
                                     <div>
-                                      <Link style={dropDownHoverTabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                      <Link style={dropDownHoverTabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">Co-operators</Link> <br></br>
                                     </div>
                                   }
                                   {history.location.pathname !== "/Cooperators" &&
                                     <div>
-                                      <Link style={this.state.hoverCooperators ? dropDownHoverTabStyleDark : dropDownTabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">The Co-operators</Link> <br></br>
+                                      <Link style={this.state.hoverCooperators ? dropDownHoverTabStyleDark : dropDownTabStyleDark} onMouseEnter={this.hoverCooperatorsOn} onMouseLeave={this.hoverCooperatorsOff} onClick={this.selectCooperators} to="/Cooperators">Co-operators</Link> <br></br>
                                     </div>
                                   }
                                 </DropdownItem>
@@ -698,7 +698,7 @@ class App extends React.Component {
                               <Link
                                 style={hoverTabStyleDark}
                                 to="/AboutMe">
-                                <i class="fas fa-id-card"></i> About Me
+                                <i class="fas fa-id-card"></i> About
                   </Link>
                             }
 
@@ -709,7 +709,7 @@ class App extends React.Component {
                                 onMouseEnter={this.hoverAboutMeOn}
                                 onMouseLeave={this.hoverAboutMeoff}
                                 to="/AboutMe">
-                                <i class="fas fa-id-card"></i> About Me
+                                <i class="fas fa-id-card"></i> About
                   </Link>
                             }
 
@@ -718,7 +718,7 @@ class App extends React.Component {
                               <Link
                                 style={hoverTabStyleDark}
                                 to="/ContactMe">
-                                <i class="fas fa-envelope"></i> Contact Me
+                                <i class="fas fa-envelope"></i> Contact
                   </Link>
                             }
 
@@ -729,7 +729,7 @@ class App extends React.Component {
                                 onMouseEnter={this.hoverContactMeOn}
                                 onMouseLeave={this.hoverContactMeoff}
                                 to="/ContactMe">
-                                <i class="fas fa-envelope"></i> Contact Me
+                                <i class="fas fa-envelope"></i> Contact
                   </Link>
                             }
                           </Transform>
@@ -739,38 +739,43 @@ class App extends React.Component {
                   </MediaQuery>
 
                   <MediaQuery query='(max-width: 1224px)'>
-                    <div className="tabheader">
-                      <div className={this.state.darkMode ? "myDarkHeader" : "myheader"}>
-                        <div style={{ padding: "10px", float: "left" }}>
+                    <div className="tabheader_mobile">
+                      <div className={this.state.darkMode ? "myDarkHeader_mobile" : "myheader_mobile"}>
+                        <div style={{ padding: "20px", float: "left" }}>
                           <CheeseburgerMenu
                             isOpen={this.state.menuOpen}
                             closeCallback={this.closeMenu.bind(this)}>
-
+                            <br/>
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/">
                               <p style={{ mobileOptions }}><i class="fas fa-home"></i> Home</p>
                             </Link>
+                            <br/>
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/Cooperators">
-                              <p style={{ mobileOptions }}><i class="fas fa-briefcase"></i> The Co-operators</p>
+                              <p style={{ mobileOptions }}><i class="fas fa-briefcase"></i> Co-operators</p>
                             </Link>
+                            <br/>
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/Manulife">
                               <p style={{ mobileOptions }}><i class="fas fa-briefcase"></i> Manulife</p>
                             </Link>
+                            <br/>
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/Designware">
                               <p style={{ mobileOptions }}><i class="fas fa-briefcase"></i> Designware</p>
                             </Link>
+                            <br/>
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/AboutMe">
-                              <p style={{ mobileOptions }}><i class="fas fa-id-card"></i> About Me</p>
+                              <p style={{ mobileOptions }}><i class="fas fa-id-card"></i> About</p>
                             </Link>
+                            <br/>
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/ContactMe">
-                              <p style={{ mobileOptions }}><i class="fas fa-envelope"></i> Contact Me</p>
+                              <p style={{ mobileOptions }}><i class="fas fa-envelope"></i> Contact</p>
                             </Link>
                           </CheeseburgerMenu>
 
                           <HamburgerMenu
                             isOpen={this.state.menuOpen}
                             menuClicked={this.openMenu.bind(this)}
-                            width={32}
-                            height={24}
+                            width={42}
+                            height={34}
                             strokeWidth={3}
                             rotate={0}
                             color={this.state.darkMode ? "#5299ba" : "black"}
@@ -778,8 +783,11 @@ class App extends React.Component {
                             animationDuration={0.5}
                           />
                         </div>
-                        <p style={this.state.darkMode ? { fontSize: "40px", color: "#5299ba", float: "center", fontWeight: "bold" } : { fontSize: "40px", color: "black", float: "center", fontWeight: "bold" }}>
-                          MQ <i class="fas fa-laptop-code"></i></p>
+                        <div style={{ marginRight: "40px",  float: "center"}}>
+                          <p style={this.state.darkMode ? { fontSize: "20px", color: "#5299ba", fontWeight: "bold" } : { fontSize: "20px", color: "black", fontWeight: "bold" }}>
+                          Mackenzie Quigley </p>
+                          <p style={this.state.darkMode ? { marginRight: "10px", marginTop: "-20px", fontSize: "40px", color: "#5299ba", fontWeight: "bold" } : { marginRight: "10px", marginLeft: "-10px", marginTop: "-20px", fontSize: "40px", color: "black", fontWeight: "bold" }}> <i class="fas fa-laptop-code"></i></p>
+                        </div>
                       </div>
                     </div>
                   </MediaQuery>
