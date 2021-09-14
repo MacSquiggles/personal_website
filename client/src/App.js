@@ -6,6 +6,7 @@ import ContactForm from "./Components/Contact";
 import WorkTermReportsForm from "./Components/WorkTermReportsForm";
 import WorkTermOneBlogForm from "./Components/WorkTermOneBlogForm";
 import WorkTermThreeBlogForm from "./Components/WorkTermThreeBlogForm";
+import WorkTermFiveBlogForm from "./Components/WorkTermFiveBlogForm";
 import { Route, Link, Switch, Router } from 'react-router-dom'
 import history from './Components/history';
 import MediaQuery from 'react-responsive';
@@ -166,7 +167,8 @@ class App extends React.Component {
       darkMode: false,
       hoverArrow: false,
       isOpen: false,
-      hoverManulife: false
+      hoverManulife: false,
+      hoverDesignware: false,
     };
     this.toggle = this.toggle.bind(this);
 
@@ -202,6 +204,10 @@ class App extends React.Component {
     this.hoverManulifeOff = this.hoverManulifeOff.bind(this);
     this.selectManulife = this.selectManulife.bind(this);
 
+    this.hoverDesignwareOn = this.hoverDesignwareOn.bind(this);
+    this.hoverDesignwareOff = this.hoverDesignwareOff.bind(this);
+    this.selectDesignware = this.selectDesignware.bind(this);
+
     this.changeDark = this.changeDark.bind(this);
     this.goToSite = this.goToSite.bind(this);
   }
@@ -228,7 +234,8 @@ class App extends React.Component {
       hoverAboutMe: false,
       hoverHome: false,
       hoverContactMe: false,
-      hoverManulife: false 
+      hoverManulife: false,
+      hoverDesignware: false
     });
     await history.push("/WorkTermReports");
   }
@@ -240,7 +247,8 @@ class App extends React.Component {
       hoverAboutMe: false,
       hoverHome: false,
       hoverContactMe: false,
-      hoverManulife: false 
+      hoverManulife: false,
+      hoverDesignware: false
     });
     await history.push("/Cooperators");
   }
@@ -277,7 +285,8 @@ class App extends React.Component {
       hoverAboutMe: false,
       hoverHome: true,
       hoverContactMe: false,
-      hoverManulife: false 
+      hoverManulife: false,
+      hoverDesignware: false
     });
     await history.push("/");
   }
@@ -300,7 +309,8 @@ class App extends React.Component {
       hoverAboutMe: true,
       hoverHome: false,
       hoverContactMe: false,
-      hoverManulife: false 
+      hoverManulife: false,
+      hoverDesignware: false
     });
     await history.push("/AboutMe");
   }
@@ -323,7 +333,8 @@ class App extends React.Component {
       hoverAboutMe: false,
       hoverHome: false,
       hoverContactMe: false,
-      hoverManulife: true 
+      hoverManulife: true,
+      hoverDesignware: false
     });
     await history.push("/Manulife");
   }
@@ -338,6 +349,29 @@ class App extends React.Component {
     }
   }
 
+  async selectDesignware() {
+    this.setState({ 
+      hoverCooperators: false,
+      selectReport: true,
+      hoverAboutMe: false,
+      hoverHome: false,
+      hoverContactMe: false,
+      hoverManulife: false,
+      hoverDesignware: true 
+    });
+    await history.push("/Designware");
+  }
+
+  hoverDesignwareOn() {
+    this.setState({ hoverDesignware: true });
+  }
+
+  hoverDesignwareOff() {
+    if (history.location.pathname !== "/Designware") {
+      this.setState({ hoverDesignware: false });
+    }
+  }
+
   async selectContactMe() {
     this.setState({ 
       hoverCooperators: false,
@@ -345,7 +379,8 @@ class App extends React.Component {
       hoverAboutMe: false,
       hoverHome: false,
       hoverContactMe: true,
-      hoverManulife: false 
+      hoverManulife: false,
+      hoverDesignware: false
     });
     await history.push("/ContactMe");
   }
@@ -503,12 +538,25 @@ class App extends React.Component {
                                 <DropdownItem className="dropdownItems">
                                   {history.location.pathname === "/Manulife" &&
                                     <div>
-                                      <Link style={dropDownItemHoverTabStyle} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                      <Link style={dropDownItemHoverTabStyle} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife</Link> <br></br>
                                     </div>
                                   }
                                   {history.location.pathname !== "/Manulife" &&
                                     <div>
-                                      <Link style={this.state.hoverManulife ? dropDownItemHoverTabStyle : dropDownItemStyle} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                      <Link style={this.state.hoverManulife ? dropDownItemHoverTabStyle : dropDownItemStyle} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife</Link> <br></br>
+                                    </div>
+                                  }
+                                </DropdownItem>
+                                <DropdownItem divider />
+                                <DropdownItem className="dropdownItems">
+                                  {history.location.pathname === "/Designware" &&
+                                    <div>
+                                      <Link style={dropDownItemHoverTabStyle} onMouseEnter={this.hoverDesignwareOn} onMouseLeave={this.hoverDesignwareOff} onClick={this.selectDesignware} to="/Designware">Designware</Link> <br></br>
+                                    </div>
+                                  }
+                                  {history.location.pathname !== "/Designware" &&
+                                    <div>
+                                      <Link style={this.state.hoverDesignware ? dropDownItemHoverTabStyle : dropDownItemStyle} onMouseEnter={this.hoverDesignwareOn} onMouseLeave={this.hoverDesignwareOff} onClick={this.selectDesignware} to="/Designware">Designware</Link> <br></br>
                                     </div>
                                   }
                                 </DropdownItem>
@@ -621,12 +669,25 @@ class App extends React.Component {
                                 <DropdownItem className="dropdownItems">
                                   {history.location.pathname === "/Manulife" &&
                                     <div>
-                                      <Link style={dropDownTabStyleDark} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                      <Link style={dropDownTabStyleDark} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife</Link> <br></br>
                                     </div>
                                   }
                                   {history.location.pathname !== "/Manulife" &&
                                     <div>
-                                      <Link style={this.state.hoverManulife ? dropDownHoverTabStyleDark : dropDownTabStyleDark} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife Financial</Link> <br></br>
+                                      <Link style={this.state.hoverManulife ? dropDownHoverTabStyleDark : dropDownTabStyleDark} onMouseEnter={this.hoverManulifeOn} onMouseLeave={this.hoverManulifeOff} onClick={this.selectManulife} to="/Manulife">Manulife</Link> <br></br>
+                                    </div>
+                                  }
+                                </DropdownItem>
+                                <DropdownItem divider />
+                                <DropdownItem className="dropdownItems">
+                                  {history.location.pathname === "/Designware" &&
+                                    <div>
+                                      <Link style={dropDownTabStyleDark} onMouseEnter={this.hoverDesignwareOn} onMouseLeave={this.hoverDesignwareOff} onClick={this.selectDesignware} to="/Designware">Designware</Link> <br></br>
+                                    </div>
+                                  }
+                                  {history.location.pathname !== "/Designware" &&
+                                    <div>
+                                      <Link style={this.state.hoverDesignware ? dropDownHoverTabStyleDark : dropDownTabStyleDark} onMouseEnter={this.hoverDesignwareOn} onMouseLeave={this.hoverDesignwareOff} onClick={this.selectDesignware} to="/Designware">Designware</Link> <br></br>
                                     </div>
                                   }
                                 </DropdownItem>
@@ -691,6 +752,12 @@ class App extends React.Component {
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/Cooperators">
                               <p style={{ mobileOptions }}><i class="fas fa-briefcase"></i> The Co-operators</p>
                             </Link>
+                            <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/Manulife">
+                              <p style={{ mobileOptions }}><i class="fas fa-briefcase"></i> Manulife</p>
+                            </Link>
+                            <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/Designware">
+                              <p style={{ mobileOptions }}><i class="fas fa-briefcase"></i> Designware</p>
+                            </Link>
                             <Link onClick={this.closeMenu.bind(this)} style={{ textDecoration: "none" }} to="/AboutMe">
                               <p style={{ mobileOptions }}><i class="fas fa-id-card"></i> About Me</p>
                             </Link>
@@ -727,6 +794,7 @@ class App extends React.Component {
                   <Route exact path="/WorkTermReports"> <WorkTermReportsForm darkMode={this.state.darkMode}/> </Route>
                   <Route exact path="/Cooperators"> <WorkTermOneBlogForm darkMode={this.state.darkMode} /> </Route>
                   <Route exact path="/Manulife"> <WorkTermThreeBlogForm darkMode={this.state.darkMode} /> </Route>
+                  <Route exact path="/Designware"> <WorkTermFiveBlogForm darkMode={this.state.darkMode} /> </Route>
                   <Route exact path="/ContactMe"> <ContactForm darkMode={this.state.darkMode} /> </Route>
                   <Route exact path="/AboutMe"><AboutMeForm darkMode={this.state.darkMode} /></Route>
                 </Switch>
